@@ -1308,6 +1308,18 @@ async function loadDailyData() {
 // ═══════════════════════════════════════════════
 //  加载数据
 // ═══════════════════════════════════════════════
+
+// Global card click handler - replaces onclick+window.open to avoid popup blockers
+document.addEventListener("click", function(e) {
+  var card = e.target.closest("[data-link]");
+  if (card) {
+    var link = card.getAttribute("data-link");
+    if (link && link.trim() && link !== "#") {
+      window.open(link, "_blank");
+    }
+  }
+});
+
 async function loadData(silent) {
   if (!silent) {
     document.getElementById('heroArea').innerHTML =
