@@ -14,7 +14,8 @@
     --text-secondary: #8b949e;
     --text-muted: #6e7681;
     --accent: #58a6ff;
-    --accent-glow: rgba(88, 166, 255, 0.15);
+    --accent-purple: #a371f7;
+    --accent-green: #3fb950;
     --tag-bg: #1a2a3a;
     --tag-text: #79c0ff;
     --hot-high: #ff7b72;
@@ -22,8 +23,8 @@
     --hot-low: #3fb950;
     --tab-active: #1f6feb;
     --divider: #21262d;
+    --width: 1200px;
   }
-
   * { margin: 0; padding: 0; box-sizing: border-box; }
 
   body {
@@ -33,27 +34,82 @@
                  "Hiragino Sans GB", "Microsoft YaHei", "Helvetica Neue", sans-serif;
     line-height: 1.6;
     min-height: 100vh;
+    overflow-x: hidden;
   }
 
-  /* ── Header ── */
+  /* ══════ Ticker Bar ══════ */
+  .ticker-bar {
+    background: linear-gradient(90deg, #1a1f2e 0%, #162032 100%);
+    border-bottom: 1px solid var(--border);
+    overflow: hidden;
+    height: 36px;
+    display: flex;
+    align-items: center;
+  }
+  .ticker-label {
+    flex-shrink: 0;
+    background: var(--hot-high);
+    color: #fff;
+    font-size: 11px;
+    font-weight: 700;
+    padding: 4px 12px;
+    border-radius: 0 4px 4px 0;
+    margin-right: 12px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    animation: pulse-label 2s ease-in-out infinite;
+  }
+  @keyframes pulse-label { 0%,100%{opacity:1} 50%{opacity:.7} }
+  .ticker-track {
+    display: flex;
+    animation: ticker-scroll 60s linear infinite;
+    white-space: nowrap;
+  }
+  .ticker-track:hover { animation-play-state: paused; }
+  @keyframes ticker-scroll {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+  }
+  .ticker-item {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    color: var(--text-secondary);
+    font-size: 12px;
+    padding: 0 20px;
+    border-right: 1px solid var(--divider);
+    cursor: pointer;
+    transition: color 0.2s;
+  }
+  .ticker-item:hover { color: var(--accent); }
+  .ticker-dot { width: 5px; height: 5px; border-radius: 50%; flex-shrink: 0; }
+  .ticker-dot.hot { background: var(--hot-high); }
+  .ticker-dot.new { background: var(--accent); }
+  .ticker-dot.normal { background: var(--text-muted); }
+
+  /* ══════ Header ══════ */
   .header {
     background: linear-gradient(135deg, #0d1117 0%, #161b22 50%, #0d1117 100%);
     border-bottom: 1px solid var(--border);
-    padding: 24px 0 0;
+    padding: 20px 0 0;
     position: sticky;
     top: 0;
     z-index: 100;
-    backdrop-filter: blur(12px);
+    backdrop-filter: blur(16px);
   }
   .header-inner {
-    max-width: 960px;
+    max-width: var(--width);
     margin: 0 auto;
-    padding: 0 20px;
+    padding: 0 24px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
   }
+  .header-left {}
   .logo {
-    font-size: 28px;
+    font-size: 30px;
     font-weight: 800;
-    letter-spacing: -0.5px;
+    letter-spacing: -1px;
     background: linear-gradient(135deg, #58a6ff, #a371f7);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
@@ -63,21 +119,42 @@
     font-size: 13px;
     color: var(--text-secondary);
     margin-top: 2px;
-    margin-bottom: 16px;
+    margin-bottom: 12px;
   }
-  .update-time {
+  .header-right {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 12px;
+  }
+  .refresh-info {
     font-size: 11px;
     color: var(--text-muted);
-    margin-left: 8px;
+    text-align: right;
   }
+  .refresh-btn {
+    padding: 6px 14px;
+    background: #1f6feb20;
+    color: var(--accent);
+    border: 1px solid #1f6feb40;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 12px;
+    font-family: inherit;
+    transition: all 0.2s;
+    white-space: nowrap;
+  }
+  .refresh-btn:hover { background: #1f6feb35; border-color: var(--accent); }
+  .refresh-btn.spinning .rf-icon { animation: spin 0.8s linear infinite; }
+  @keyframes spin { to { transform: rotate(360deg); } }
 
-  /* ── Tabs ── */
+  /* ══════ Tabs ══════ */
   .tabs {
     display: flex;
     gap: 0;
-    max-width: 960px;
+    max-width: var(--width);
     margin: 0 auto;
-    padding: 0 20px;
+    padding: 0 24px;
   }
   .tab-btn {
     padding: 10px 24px;
@@ -97,119 +174,236 @@
     border-bottom-color: var(--tab-active);
   }
 
-  /* ── Main ── */
+  /* ══════ Container ══════ */
   .container {
-    max-width: 960px;
+    max-width: var(--width);
     margin: 0 auto;
-    padding: 24px 20px 60px;
+    padding: 20px 24px 60px;
   }
   .tab-content { display: none; }
   .tab-content.active { display: block; }
 
-  /* ── Stats bar ── */
+  /* ══════ Stats Bar ══════ */
   .stats-bar {
     display: flex;
-    gap: 20px;
-    margin-bottom: 24px;
+    flex-wrap: wrap;
+    gap: 24px;
+    margin-bottom: 20px;
+    padding: 12px 16px;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 10px;
     font-size: 13px;
     color: var(--text-secondary);
   }
-  .stats-bar span { display: flex; align-items: center; gap: 4px; }
+  .stats-bar .stat-item {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .stats-bar .stat-val {
+    color: var(--text);
+    font-weight: 600;
+  }
 
-  /* ── News Cards ── */
-  .news-list { display: flex; flex-direction: column; gap: 16px; }
-
-  .news-card {
+  /* ══════ Hero Section ══════ */
+  .hero-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin-bottom: 24px;
+  }
+  .hero-card {
     background: var(--bg-card);
     border: 1px solid var(--border);
-    border-radius: 12px;
-    padding: 20px 24px;
-    transition: all 0.25s;
+    border-radius: 14px;
+    padding: 24px;
     cursor: pointer;
+    transition: all 0.3s;
     position: relative;
     overflow: hidden;
   }
-  .news-card:hover {
+  .hero-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, #58a6ff, #a371f7);
+    opacity: 0;
+    transition: opacity 0.3s;
+  }
+  .hero-card:hover {
     background: var(--bg-card-hover);
     border-color: #3a4a60;
-    transform: translateY(-1px);
-    box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 30px rgba(0,0,0,0.4);
   }
-  .news-card-header {
+  .hero-card:hover::before { opacity: 1; }
+  .hero-card .hc-header {
     display: flex;
     justify-content: space-between;
     align-items: flex-start;
     gap: 16px;
     margin-bottom: 10px;
   }
-  .news-title {
-    font-size: 17px;
-    font-weight: 600;
-    color: var(--text);
+  .hero-card .hc-title {
+    font-size: 18px;
+    font-weight: 700;
     line-height: 1.4;
-    flex: 1;
+    color: var(--text);
   }
-  .news-title a {
-    color: inherit;
-    text-decoration: none;
-  }
-  .news-title a:hover { color: var(--accent); }
-
-  /* Hot Score Badge */
-  .hot-badge {
-    flex-shrink: 0;
-    width: 44px;
-    height: 44px;
-    border-radius: 12px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    font-weight: 800;
-    font-size: 16px;
-    line-height: 1;
-  }
-  .hot-badge.hot { background: #ff7b721a; color: var(--hot-high); }
-  .hot-badge.warm { background: #d299221a; color: var(--hot-mid); }
-  .hot-badge.cool { background: #3fb9501a; color: var(--hot-low); }
-  .hot-badge-label {
-    font-size: 8px;
-    font-weight: 500;
-    opacity: 0.7;
-    margin-top: 1px;
-  }
-
-  .news-summary {
+  .hero-card .hc-title:hover { color: var(--accent); }
+  .hero-card .hc-summary {
     font-size: 14px;
     color: var(--text-secondary);
-    line-height: 1.65;
-    margin-bottom: 12px;
+    line-height: 1.7;
+    margin-bottom: 14px;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
   }
-  .news-meta {
+  .hero-card .hc-meta {
     display: flex;
     flex-wrap: wrap;
     gap: 8px;
     align-items: center;
   }
+
+  /* Hot badge large */
+  .hot-badge-lg {
+    flex-shrink: 0;
+    width: 52px;
+    height: 52px;
+    border-radius: 14px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-weight: 800;
+    font-size: 18px;
+    line-height: 1;
+  }
+  .hot-badge-lg.fire { background: #ff7b7218; color: var(--hot-high); animation: fire-pulse 1.5s ease-in-out infinite; }
+  .hot-badge-lg.warm { background: #d2992218; color: var(--hot-mid); }
+  .hot-badge-lg .hbl-label { font-size: 9px; font-weight: 500; opacity: 0.7; }
+  @keyframes fire-pulse { 0%,100%{box-shadow: 0 0 0 0 #ff7b7240} 50%{box-shadow: 0 0 0 8px #ff7b7200} }
+
+  /* ══════ News Grid ─═════ */
+  .section-title {
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--text);
+    margin-bottom: 14px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .section-title::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--divider);
+  }
+  .news-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+  }
+  .news-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 16px 18px;
+    transition: all 0.25s;
+    cursor: pointer;
+    position: relative;
+    animation: fadeInUp 0.4s ease backwards;
+  }
+  @keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(12px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .news-card:hover {
+    background: var(--bg-card-hover);
+    border-color: #3a4a60;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 16px rgba(0,0,0,0.3);
+  }
+  .news-card .nc-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 10px;
+    margin-bottom: 8px;
+  }
+  .news-card .nc-title {
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 1.45;
+    color: var(--text);
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+  .news-card:hover .nc-title { color: var(--accent); }
+  .news-card .nc-summary {
+    font-size: 12.5px;
+    color: var(--text-secondary);
+    line-height: 1.55;
+    margin-bottom: 10px;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+  .news-card .nc-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    align-items: center;
+  }
+
+  /* Hot badge small */
+  .hot-badge-sm {
+    flex-shrink: 0;
+    min-width: 38px;
+    height: 38px;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 14px;
+    line-height: 1;
+  }
+  .hot-badge-sm.fire { background: #ff7b7218; color: var(--hot-high); }
+  .hot-badge-sm.warm { background: #d2992218; color: var(--hot-mid); }
+  .hot-badge-sm.cool { background: #3fb95018; color: var(--hot-low); }
+  .hot-badge-sm .hbs-label { font-size: 7px; font-weight: 500; opacity: 0.6; }
+
+  /* ══════ Tags & Sources ══════ */
   .tag {
     display: inline-block;
-    padding: 2px 10px;
+    padding: 2px 8px;
     background: var(--tag-bg);
     color: var(--tag-text);
     border-radius: 20px;
-    font-size: 12px;
+    font-size: 11px;
     font-weight: 500;
   }
   .source {
-    font-size: 12px;
+    font-size: 11px;
     color: var(--text-muted);
     display: flex;
     align-items: center;
-    gap: 4px;
+    gap: 3px;
   }
   .source-dot {
-    width: 6px;
-    height: 6px;
+    width: 5px;
+    height: 5px;
     border-radius: 50%;
     display: inline-block;
   }
@@ -218,7 +412,7 @@
   .source-dot.rd { background: #ffa657; }
   .source-dot.ar { background: #a371f7; }
 
-  /* ── Learning Tab ── */
+  /* ══════ Learning Tab ══════ */
   .learning-block {
     background: var(--bg-card);
     border: 1px solid var(--border);
@@ -261,55 +455,115 @@
   }
   .paper-link:hover { background: #1f6feb35; }
 
-  /* ── Empty / Loading ── */
+  /* ══════ Loading ══════ */
   .empty-state {
     text-align: center;
     padding: 60px 20px;
     color: var(--text-muted);
   }
   .empty-state .icon { font-size: 48px; margin-bottom: 12px; }
-  .loading-spinner {
-    display: inline-block;
-    width: 32px;
-    height: 32px;
-    border: 3px solid var(--border);
-    border-top-color: var(--accent);
-    border-radius: 50%;
-    animation: spin 0.8s linear infinite;
+  .loading-skeleton {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
   }
-  @keyframes spin { to { transform: rotate(360deg); } }
+  .skeleton-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 18px;
+    animation: shimmer 1.5s infinite;
+  }
+  @keyframes shimmer {
+    0% { opacity: 0.4; }
+    50% { opacity: 0.7; }
+    100% { opacity: 0.4; }
+  }
+  .skeleton-line {
+    height: 14px;
+    background: var(--border);
+    border-radius: 4px;
+    margin-bottom: 10px;
+  }
+  .skeleton-line.w80 { width: 80%; }
+  .skeleton-line.w50 { width: 50%; }
+  .skeleton-line.w30 { width: 30%; }
 
-  /* ── Footer ── */
+  /* ══════ Footer ══════ */
   .footer {
     text-align: center;
     padding: 20px;
     font-size: 12px;
     color: var(--text-muted);
     border-top: 1px solid var(--divider);
-    max-width: 960px;
+    max-width: var(--width);
     margin: 0 auto;
   }
   .footer a { color: var(--accent); text-decoration: none; }
 
-  /* ── Responsive ── */
-  @media (max-width: 640px) {
-    .header { padding: 16px 0 0; }
-    .logo { font-size: 22px; }
-    .tab-btn { padding: 8px 16px; font-size: 14px; }
-    .news-card { padding: 16px; }
-    .news-title { font-size: 15px; }
-    .hot-badge { width: 36px; height: 36px; font-size: 14px; border-radius: 10px; }
-    .learning-block { padding: 20px; }
+  /* ══════ Toast ══════ */
+  .toast {
+    position: fixed;
+    bottom: 24px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: #1f6feb;
+    color: #fff;
+    padding: 10px 20px;
+    border-radius: 20px;
+    font-size: 13px;
+    font-weight: 500;
+    z-index: 999;
+    opacity: 0;
+    transition: opacity 0.3s;
+    pointer-events: none;
+  }
+  .toast.show { opacity: 1; }
+
+  /* ══════ Responsive ══════ */
+  @media (max-width: 768px) {
+    :root { --width: 100%; }
+    .hero-grid { grid-template-columns: 1fr; }
+    .news-grid { grid-template-columns: 1fr; }
+    .loading-skeleton { grid-template-columns: 1fr; }
+    .header-inner { flex-direction: column; align-items: flex-start; }
+    .header-right { width: 100%; justify-content: flex-end; margin-top: -36px; }
+    .logo { font-size: 24px; }
+    .hero-card { padding: 18px; }
+    .hero-card .hc-title { font-size: 16px; }
+    .hot-badge-lg { width: 42px; height: 42px; font-size: 15px; }
+  }
+
+  @media (max-width: 480px) {
+    .ticker-bar { height: 30px; }
+    .ticker-label { font-size: 10px; padding: 3px 8px; }
+    .tab-btn { padding: 8px 14px; font-size: 13px; }
+    .news-card { padding: 14px; }
+    .stats-bar { gap: 12px; font-size: 11px; }
   }
 </style>
 </head>
 <body>
 
-<!-- ── Header ── -->
+<!-- ══════ Ticker Bar ══════ -->
+<div class="ticker-bar" id="tickerBar">
+  <span class="ticker-label">📡 实时</span>
+  <div class="ticker-track" id="tickerTrack"></div>
+</div>
+
+<!-- ══════ Header ══════ -->
 <header class="header">
   <div class="header-inner">
-    <div class="logo">🤖 AI 日报</div>
-    <div class="subtitle">每天读懂人工智能 <span class="update-time" id="updateTime"></span></div>
+    <div class="header-left">
+      <div class="logo">🤖 AI 日报</div>
+      <div class="subtitle">每天读懂人工智能</div>
+    </div>
+    <div class="header-right">
+      <span class="refresh-info" id="refreshInfo">--</span>
+      <button class="refresh-btn" onclick="refreshNow()" title="立即刷新">
+        <span class="rf-icon">🔄</span> 刷新
+      </button>
+    </div>
   </div>
   <nav class="tabs">
     <button class="tab-btn active" onclick="switchTab('news')">🔥 热点速递</button>
@@ -317,77 +571,120 @@
   </nav>
 </header>
 
-<!-- ── 热点速递 Tab ── -->
+<!-- ══════ Main ══════ -->
 <div class="container">
+  <!-- ══ 热点速递 ══ -->
   <div id="tab-news" class="tab-content active">
     <div class="stats-bar" id="statsBar"></div>
-    <div class="news-list" id="newsList">
-      <div class="empty-state">
-        <div class="loading-spinner"></div>
-        <p style="margin-top:16px">正在加载新闻...</p>
-      </div>
-    </div>
+    <div id="heroArea"></div>
+    <div id="newsGridArea"></div>
   </div>
-
-  <!-- ── AI 学习 Tab ── -->
+  <!-- ══ AI 学习 ══ -->
   <div id="tab-learning" class="tab-content">
     <div id="learningContent">
-      <div class="empty-state">
-        <div class="loading-spinner"></div>
-        <p style="margin-top:16px">正在加载学习内容...</p>
+      <div class="loading-skeleton">
+        <div class="skeleton-card"><div class="skeleton-line w80"></div><div class="skeleton-line w50"></div><div class="skeleton-line w30"></div></div>
+        <div class="skeleton-card"><div class="skeleton-line w80"></div><div class="skeleton-line w50"></div><div class="skeleton-line w30"></div></div>
       </div>
     </div>
   </div>
 </div>
 
+<!-- ══════ Footer ══════ -->
 <div class="footer">
   AI 日报 · 内容由 AI 自动生成 · 仅供参考 ·
-  <a href="https://gitee.com" target="_blank">Gitee</a>
+  <a href="https://gitee.com/fcyw/ai-daily" target="_blank">Gitee</a>
 </div>
 
+<!-- ══════ Toast ══════ -->
+<div class="toast" id="toast"></div>
+
 <script>
-// ═══════════════════════════════════════════════════════
-//  内嵌演示数据 — 即使 JSON 加载失败也能看到效果
-// ═══════════════════════════════════════════════════════
-const DEMO_NEWS = { updated: null, news: [
+// ═══════════════════════════════════════════════════════════
+//  丰富的演示数据 — JSON 加载失败时展示
+// ═══════════════════════════════════════════════════════════
+const DEMO_NEWS = { updated: "2026-06-02T14:00:00Z", count: 8, news: [
   { id:"d1", title:"OpenAI Releases GPT-5", title_cn:"OpenAI 发布 GPT-5：推理能力大幅提升",
-    summary_cn:"OpenAI 正式发布了 GPT-5 模型，在数学推理、代码生成和多模态理解方面均达到新高。新模型引入了链式思考增强机制，CEO Sam Altman 表示这代表着通向 AGI 的重要一步。",
-    tags:["GPT-5","OpenAI","LLM"], hot_score:92, link:"https://example.com/gpt5",
+    summary_cn:"OpenAI 正式发布 GPT-5，在数学推理、代码生成和多模态理解方面均达到新高。引入链式思考增强机制，MATH 基准达 96.8%。Sam Altman 表示这是通向 AGI 的重要一步。",
+    tags:["GPT-5","OpenAI","LLM","Reasoning"], hot_score:95, link:"https://example.com/gpt5",
     published:"2026-06-02T10:30:00Z", sources:["TechCrunch","HackerNews"], authority_weight:25 },
   { id:"d2", title:"DeepMind Robotics Breakthrough", title_cn:"DeepMind 新机器人模型掌握复杂操作",
-    summary_cn:"Google DeepMind 推出 RT-3 模型，能通过自然语言指令完成折叠衣物、整理桌面等操作，在 1000+ 种未见物品上成功率达 87%。",
-    tags:["DeepMind","Robotics","Agent"], hot_score:78, link:"https://example.com/robot",
+    summary_cn:"Google DeepMind 推出 RT-3 模型，通过自然语言指令完成折叠衣物、整理桌面等操作，1000+ 种未见物品上成功率达 87%。",
+    tags:["DeepMind","Robotics","Agent","Google"], hot_score:85, link:"https://example.com/robot",
     published:"2026-06-02T08:00:00Z", sources:["ArXiv","HackerNews"], authority_weight:20 },
-  { id:"d3", title:"Anthropic AI Safety Paper", title_cn:"Anthropic 发布突破性 AI 安全研究",
-    summary_cn:"Anthropic 在 Nature 发表 Constitutional AI 论文，展示该方法能有效减少有害输出 94%，同时保持模型有用性。",
-    tags:["Anthropic","AI Safety","Alignment"], hot_score:65, link:"https://example.com/safety",
-    published:"2026-06-01T16:00:00Z", sources:["Reddit"], authority_weight:15 }
+  { id:"d3", title:"Anthropic Constitutional AI Published in Nature", title_cn:"Anthropic 突破性 AI 安全研究登上 Nature",
+    summary_cn:"Anthropic 在 Nature 发表 Constitutional AI 论文，展示该方法减少有害输出 94%，同时保持模型有用性。为 AI 对齐领域树立新标杆。",
+    tags:["Anthropic","AI Safety","Alignment"], hot_score:72, link:"https://example.com/safety",
+    published:"2026-06-01T16:00:00Z", sources:["Reddit","TechCrunch"], authority_weight:25 },
+  { id:"d4", title:"NVIDIA Unveils Next-Gen AI Chip", title_cn:"NVIDIA 发布新一代 AI 芯片 Blackwell Ultra",
+    summary_cn:"NVIDIA 推出 Blackwell Ultra 架构，推理性能比上一代提升 4 倍，功耗降低 30%。黄仁勋称其为「AI 计算的 iPhone 时刻」。",
+    tags:["NVIDIA","Chip","GPU","Hardware"], hot_score:78, link:"https://example.com/nvidia",
+    published:"2026-06-02T06:00:00Z", sources:["TechCrunch","HackerNews"], authority_weight:25 },
+  { id:"d5", title:"Meta Open-Sources Llama-4 400B", title_cn:"Meta 开源 Llama-4 400B：最强开源大模型",
+    summary_cn:"Meta 发布 Llama-4 400B 参数版本，在 MMLU、HumanEval 等多项基准中超越 GPT-4。采用 MoE 架构，推理成本大幅降低。开源社区反响热烈。",
+    tags:["Meta","Llama-4","Open Source","MoE"], hot_score:82, link:"https://example.com/llama4",
+    published:"2026-06-01T22:00:00Z", sources:["HackerNews","Reddit"], authority_weight:15 },
+  { id:"d6", title:"AI Agent Startup Raises $2B", title_cn:"AI Agent 创业公司获 20 亿美元融资",
+    summary_cn:"专注企业级 AI Agent 的创业公司 Devin AI 完成 C 轮 20 亿美元融资，估值达 85 亿美元。产品可自动完成代码审查、测试和部署全流程。",
+    tags:["AI Agent","Funding","Startup","Devin"], hot_score:68, link:"https://example.com/devin",
+    published:"2026-06-01T18:00:00Z", sources:["TechCrunch"], authority_weight:25 },
+  { id:"d7", title:"EU Passes Comprehensive AI Regulation", title_cn:"欧盟通过全面 AI 监管法案",
+    summary_cn:"欧盟议会以压倒性多数通过 AI 监管法案，要求高风险 AI 系统进行第三方审计，禁止社交评分和实时生物识别监控。2027 年起全面实施。",
+    tags:["Regulation","EU","AI Policy","Governance"], hot_score:55, link:"https://example.com/eu-ai",
+    published:"2026-06-01T14:00:00Z", sources:["Reddit"], authority_weight:15 },
+  { id:"d8", title:"New RAG Technique Beats Fine-Tuning", title_cn:"新 RAG 技术性能超越微调",
+    summary_cn:"斯坦福团队提出 GraphRAG 2.0，结合知识图谱与向量检索，在事实问答任务中超越全量微调模型，幻觉率降低 62%。论文已在 ArXiv 发布。",
+    tags:["RAG","Knowledge Graph","Research","ArXiv"], hot_score:52, link:"https://example.com/graphrag2",
+    published:"2026-06-01T08:00:00Z", sources:["ArXiv","HackerNews"], authority_weight:20 }
 ]};
-
-const DEMO_HOT = { updated: null, news: DEMO_NEWS.news.filter(n => n.hot_score >= 60) };
-
-const DEMO_LEARN = { updated: null,
+const DEMO_HOT = { updated: "2026-06-02T14:00:00Z", count: 8, news: DEMO_NEWS.news };
+const DEMO_LEARN = { updated: "2026-06-02T14:00:00Z",
   term: { word:"Mixture of Experts（MoE）",
-    explanation_cn:"MoE 将神经网络分成多个「专家」子网络，每次推理只激活一部分，大幅降低计算量。Mixtral、GPT-4 据信使用了此技术。" },
-  paper: { title:"LLMs as General-Purpose Agents: A Survey", title_cn:"LLM 作为通用智能体的全面综述",
-    interpretation_cn:"这篇综述梳理了 LLM Agent 三大核心能力：规划、工具使用和记忆。分析了当前挑战：幻觉放大、多步推理累积错误、安全风险。为开发者构建 AI Agent 提供了系统性参考。",
-    link:"https://arxiv.org/abs/2506.12345", arxiv_id:"2506.12345", authors:"Zhang et al.", published:"2026-06-01" }
+    explanation_cn:"MoE 将神经网络分成多个「专家」子网络，每次推理只激活其中一部分，大幅降低推理计算量。这是目前大模型主流的扩展架构——在相同算力下可训练更大模型。Mixtral 8x7B、GPT-4 据信均采用此技术。为什么重要？因为 MoE 打破了「参数越多越慢」的魔咒，让千亿甚至万亿参数模型的部署变得实际可行。典型应用包括：大语言模型推理加速、多任务学习、个性化推荐系统。" },
+  paper: { title:"GraphRAG 2.0: Graph-Enhanced Retrieval Augmented Generation", title_cn:"GraphRAG 2.0：图增强检索生成框架",
+    interpretation_cn:"这篇来自斯坦福大学的工作提出了新一代 RAG 框架 GraphRAG 2.0。要解决的问题：传统 RAG 仅靠向量相似度检索文档片段，忽略了知识之间的关联关系。例如用户问「Transformer 的作者后来做了什么」，向量检索能找到 Transformer 论文，但无法关联到作者后续的研究。核心方法：将知识图谱与向量检索深度融合。首先从文档库自动构建知识图谱（实体+关系），查询时同时进行向量检索和图遍历检索，再用图神经网络对检索结果排序。关键创新在于动态图谱更新——新文档加入后图谱自动扩展，无需重建。主要效果：在 HotpotQA 等多跳推理基准上比传统 RAG 提升 34%，幻觉率降低 62%。实际意义：为企业知识库、学术研究、法律文档分析等需要复杂关联推理的场景提供了更可靠的解决方案。",
+    link:"https://arxiv.org/abs/2506.12345", arxiv_id:"2506.12345", authors:"Chen, Wang et al. (Stanford)", published:"2026-06-01" }
 };
 
-// ── 常量 ──
+// ═══════════════════════════════════════════════
+//  常量
+// ═══════════════════════════════════════════════
 const NEWS_JSON  = 'news.json';
 const HOT_JSON   = 'hot_news.json';
 const LEARNING_JSON = 'learning.json';
-const FETCH_TIMEOUT = 6000;  // 6 秒超时
+const FETCH_TIMEOUT = 6000;
+const AUTO_REFRESH_SEC = 300; // 5 分钟自动刷新
 
-// ── 带超时的 fetch ──
-function fetchWithTimeout(url, timeout) {
-  const ctrl = new AbortController();
-  const t = setTimeout(function(){ ctrl.abort(); }, timeout || FETCH_TIMEOUT);
-  return fetch(url, { signal: ctrl.signal }).finally(function(){ clearTimeout(t); });
+// ═══════════════════════════════════════════════
+//  全局状态
+// ═══════════════════════════════════════════════
+let allNews = [];
+let isUsingDemo = false;
+let refreshTimer = null;
+let countdownInterval = null;
+
+// ═══════════════════════════════════════════════
+//  Toast
+// ═══════════════════════════════════════════════
+function showToast(msg) {
+  var t = document.getElementById('toast');
+  t.textContent = msg;
+  t.classList.add('show');
+  setTimeout(function(){ t.classList.remove('show'); }, 2500);
 }
 
-// ── Tab 切换 ──
+// ═══════════════════════════════════════════════
+//  带超时 fetch
+// ═══════════════════════════════════════════════
+function fetchWithTimeout(url, timeout) {
+  var ctrl = new AbortController();
+  var timer = setTimeout(function(){ ctrl.abort(); }, timeout || FETCH_TIMEOUT);
+  return fetch(url, { signal: ctrl.signal }).finally(function(){ clearTimeout(timer); });
+}
+
+// ═══════════════════════════════════════════════
+//  Tab 切换
+// ═══════════════════════════════════════════════
 function switchTab(tab) {
   document.querySelectorAll('.tab-btn').forEach(function(b, i) {
     b.classList.toggle('active', (i === 0 && tab === 'news') || (i === 1 && tab === 'learning'));
@@ -396,14 +693,19 @@ function switchTab(tab) {
   document.getElementById('tab-learning').classList.toggle('active', tab === 'learning');
 }
 
-// ── 格式化时间 ──
+// ═══════════════════════════════════════════════
+//  格式化时间
+// ═══════════════════════════════════════════════
 function formatTime(s) {
   if (!s) return '';
   try {
     var d = new Date(s);
     if (isNaN(d.getTime())) return '';
-    var h = Math.floor((Date.now() - d.getTime()) / 3600000);
-    if (h < 1)  return '刚刚';
+    var diff = Date.now() - d.getTime();
+    var min = Math.floor(diff / 60000);
+    if (min < 1)  return '刚刚';
+    if (min < 60) return min + ' 分钟前';
+    var h = Math.floor(min / 60);
     if (h < 24) return h + ' 小时前';
     var days = Math.floor(h / 24);
     if (days < 30) return days + ' 天前';
@@ -411,96 +713,138 @@ function formatTime(s) {
   } catch(e) { return ''; }
 }
 
-// ── 错误/空状态 ──
-function statusHTML(icon, msg, showRetry) {
-  var btn = showRetry ? '<button class="retry-btn" onclick="loadData()">🔄 重试</button>' : '';
-  return '<div class="empty-state"><div class="icon">' + icon + '</div><p>' + msg + '</p>' + btn + '</div>';
-}
-
-// ── 热度 Badge ──
-function hotBadgeHTML(score) {
-  var cls = score >= 75 ? 'hot' : (score >= 55 ? 'warm' : 'cool');
-  return '<div class="hot-badge ' + cls + '"><span>' + score + '</span><span class="hot-badge-label">热度</span></div>';
-}
-
-function sourceDot(source) {
-  var m = { TechCrunch:'tc', HackerNews:'hn', Reddit:'rd', ArXiv:'ar' };
-  return m[source] || '';
-}
-
-// ── HTML 转义 ──
+// ═══════════════════════════════════════════════
+//  HTML 工具
+// ═══════════════════════════════════════════════
 function esc(s) {
   if (!s) return '';
   var d = document.createElement('div');
   d.textContent = s;
   return d.innerHTML;
 }
+function sourceDot(source) {
+  var m = { TechCrunch:'tc', HackerNews:'hn', Reddit:'rd', ArXiv:'ar' };
+  return m[source] || '';
+}
 
-// ── 渲染新闻 ──
-function renderNews(arr, updated, isDemo) {
-  var list = document.getElementById('newsList');
-  var stats = document.getElementById('statsBar');
-  var timeEl = document.getElementById('updateTime');
+function hotBadgeClass(score) {
+  if (score >= 75) return 'fire';
+  if (score >= 50) return 'warm';
+  return 'cool';
+}
 
-  if (!arr || !arr.length) {
-    list.innerHTML = statusHTML('📭', '暂无新闻 — 请运行 fetch_news.py 生成数据', true);
-    stats.innerHTML = '';
-    return;
-  }
-
-  timeEl.textContent = updated ? '更新于 ' + formatTime(updated) : '';
-  timeEl.style.color = isDemo ? '#d29922' : '';  // 演示数据用橙色提示
-
-  var sources = [];
-  var tags = [];
-  arr.forEach(function(n) {
-    (n.sources || []).forEach(function(s) { if (sources.indexOf(s) < 0) sources.push(s); });
-    (n.tags || []).forEach(function(t) { if (tags.indexOf(t) < 0) tags.push(t); });
-  });
-  tags = tags.slice(0, 5);
-
-  stats.innerHTML = '<span>📰 ' + arr.length + ' 条新闻</span>' +
-    '<span>📡 ' + sources.join(', ') + '</span>' +
-    (tags.length ? '<span>🏷 ' + tags.join(', ') + '</span>' : '');
-
-  list.innerHTML = arr.map(function(n) {
-    var sourcesHTML = (n.sources || []).map(function(s) {
-      return '<span class="source"><span class="source-dot ' + sourceDot(s) + '"></span>' + esc(s) + '</span>';
-    }).join('');
-    var tagsHTML = (n.tags || []).map(function(t) {
-      return '<span class="tag">' + esc(t) + '</span>';
-    }).join('');
-    return '<article class="news-card" onclick="window.open(\'' + esc(n.link) + '\',\'_blank\')">' +
-      '<div class="news-card-header">' +
-        '<div class="news-title"><a href="' + esc(n.link) + '" target="_blank" onclick="event.stopPropagation()">' +
-          esc(n.title_cn || n.title) + '</a></div>' +
-        hotBadgeHTML(n.hot_score || 0) +
-      '</div>' +
-      '<div class="news-summary">' + esc((n.summary_cn || '').substring(0, 200)) + '</div>' +
-      '<div class="news-meta">' +
-        sourcesHTML + tagsHTML +
-        '<span style="font-size:11px;color:var(--text-muted);margin-left:auto">' + formatTime(n.published) + '</span>' +
-      '</div></article>';
+function sourceHTML(sources) {
+  return (sources || []).map(function(s) {
+    return '<span class="source"><span class="source-dot ' + sourceDot(s) + '"></span>' + esc(s) + '</span>';
   }).join('');
 }
 
-// ── 渲染学习 ──
-function renderLearning(data, isDemo) {
-  var container = document.getElementById('learningContent');
-  var timeEl = document.getElementById('updateTime');
+function tagsHTML(tags) {
+  return (tags || []).slice(0, 4).map(function(t) {
+    return '<span class="tag">' + esc(t) + '</span>';
+  }).join('');
+}
 
-  if (!data || typeof data !== 'object') {
-    container.innerHTML = statusHTML('📭', '暂无内容', true);
+// ═══════════════════════════════════════════════
+//  渲染 Ticker 滚动条
+// ═══════════════════════════════════════════════
+function renderTicker(newsArr) {
+  var track = document.getElementById('tickerTrack');
+  if (!newsArr || !newsArr.length) {
+    track.innerHTML = '<span class="ticker-item">暂无新闻</span>';
     return;
   }
+  var items = newsArr.slice(0, 15);
+  // 双份以实现无缝循环
+  var html = items.map(function(n, i) {
+    var dotCls = n.hot_score >= 75 ? 'hot' : (n.hot_score >= 50 ? 'new' : 'normal');
+    return '<span class="ticker-item" onclick="window.open(\'' + esc(n.link) + '\',\'_blank\')" title="' + esc(n.title_cn || n.title) + '">' +
+      '<span class="ticker-dot ' + dotCls + '"></span>' +
+      esc((n.title_cn || n.title).substring(0, 35)) +
+      '</span>';
+  }).join('');
+  track.innerHTML = html + html;
+}
 
-  timeEl.textContent = data.updated ? '更新于 ' + formatTime(data.updated) : '';
-  timeEl.style.color = isDemo ? '#d29922' : '';
+// ═══════════════════════════════════════════════
+//  渲染 Hero 区（前 2 条特大卡片）
+// ═══════════════════════════════════════════════
+function renderHero(topNews) {
+  var area = document.getElementById('heroArea');
+  if (!topNews || topNews.length < 2) { area.innerHTML = ''; return; }
+  area.innerHTML = '<div class="hero-grid">' + topNews.map(function(n, i) {
+    var cls = hotBadgeClass(n.hot_score);
+    return '<article class="hero-card" style="animation:fadeInUp 0.4s ' + (i*0.1) + 's ease backwards" ' +
+      'onclick="window.open(\'' + esc(n.link) + '\',\'_blank\')">' +
+      '<div class="hc-header">' +
+        '<div class="hc-title">' + esc(n.title_cn || n.title) + '</div>' +
+        '<div class="hot-badge-lg ' + cls + '"><span>' + (n.hot_score || 0) + '</span><span class="hbl-label">热度</span></div>' +
+      '</div>' +
+      '<div class="hc-summary">' + esc(n.summary_cn || '') + '</div>' +
+      '<div class="hc-meta">' + sourceHTML(n.sources) + tagsHTML(n.tags) +
+        '<span style="font-size:11px;color:var(--text-muted);margin-left:auto">' + formatTime(n.published) + '</span>' +
+      '</div></article>';
+  }).join('') + '</div>';
+}
 
+// ═══════════════════════════════════════════════
+//  渲染新闻网格（剩余新闻双列排布）
+// ═══════════════════════════════════════════════
+function renderNewsGrid(restNews) {
+  var area = document.getElementById('newsGridArea');
+  if (!restNews || !restNews.length) {
+    area.innerHTML = restNews === null ? '' : '<div class="empty-state"><p style="color:var(--text-muted);padding:20px">📭 暂无更多新闻</p></div>';
+    return;
+  }
+  var titleHTML = '<div class="section-title">📰 更多资讯 <span style="font-weight:400;font-size:12px;color:var(--text-muted)">(' + restNews.length + ' 条)</span></div>';
+  area.innerHTML = titleHTML + '<div class="news-grid">' + restNews.map(function(n, i) {
+    var cls = hotBadgeClass(n.hot_score);
+    return '<article class="news-card" style="animation-delay:' + (i*0.05) + 's" ' +
+      'onclick="window.open(\'' + esc(n.link) + '\',\'_blank\')">' +
+      '<div class="nc-header">' +
+        '<div class="nc-title">' + esc(n.title_cn || n.title) + '</div>' +
+        '<div class="hot-badge-sm ' + cls + '"><span>' + (n.hot_score || 0) + '</span><span class="hbs-label">热度</span></div>' +
+      '</div>' +
+      '<div class="nc-summary">' + esc(n.summary_cn || '') + '</div>' +
+      '<div class="nc-meta">' + sourceHTML(n.sources) + tagsHTML(n.tags) +
+        '<span style="font-size:10px;color:var(--text-muted);margin-left:auto">' + formatTime(n.published) + '</span>' +
+      '</div></article>';
+  }).join('') + '</div>';
+}
+
+// ═══════════════════════════════════════════════
+//  渲染 Stats
+// ═══════════════════════════════════════════════
+function renderStats(arr, updated, isDemo) {
+  var bar = document.getElementById('statsBar');
+  if (!arr || !arr.length) { bar.innerHTML = ''; return; }
+  var sources = [];
+  var allTags = [];
+  arr.forEach(function(n) {
+    (n.sources || []).forEach(function(s) { if (sources.indexOf(s) < 0) sources.push(s); });
+    (n.tags || []).forEach(function(t) { if (allTags.indexOf(t) < 0) allTags.push(t); });
+  });
+  allTags = allTags.slice(0, 6);
+  var maxScore = Math.max.apply(null, arr.map(function(n){ return n.hot_score || 0; }));
+  bar.innerHTML =
+    '<span class="stat-item">📰 共 <span class="stat-val">' + arr.length + '</span> 条新闻</span>' +
+    '<span class="stat-item">🔥 最高热度 <span class="stat-val" style="color:var(--hot-high)">' + maxScore + '</span></span>' +
+    '<span class="stat-item">📡 ' + sources.join(' · ') + '</span>' +
+    '<span class="stat-item">' + (isDemo ? '⚠️ 演示模式' : '✅ 实时数据') + '</span>';
+}
+
+// ═══════════════════════════════════════════════
+//  渲染学习
+// ═══════════════════════════════════════════════
+function renderLearning(data, isDemo) {
+  var container = document.getElementById('learningContent');
+  if (!data || typeof data !== 'object') {
+    container.innerHTML = '<div class="empty-state"><div class="icon">📭</div><p>暂无内容</p></div>';
+    return;
+  }
   var termHTML = (data.term && data.term.word) ?
     '<div class="learning-block"><h2><span class="learning-icon">📖</span> 今日术语：' + esc(data.term.word) + '</h2>' +
     '<div class="body"><p>' + esc(data.term.explanation_cn || '') + '</p></div></div>' : '';
-
   var paperHTML = (data.paper && data.paper.title) ?
     '<div class="learning-block"><h2><span class="learning-icon">📄</span> 论文解读：' + esc(data.paper.title_cn || data.paper.title) + '</h2>' +
     '<div class="meta">原文：' + esc(data.paper.title) + ' · ' +
@@ -509,18 +853,52 @@ function renderLearning(data, isDemo) {
     '<div class="body"><p>' + esc(data.paper.interpretation_cn || '') + '</p></div>' +
     (data.paper.link ? '<a class="paper-link" href="' + esc(data.paper.link) + '" target="_blank">📎 查看论文原文 →</a>' : '') +
     '</div>' : '';
-
-  container.innerHTML = (termHTML + paperHTML) || statusHTML('📭', '暂无学习内容 — 请运行 generate_learning.py 生成数据', true);
+  container.innerHTML = (termHTML + paperHTML) || '<div class="empty-state"><div class="icon">📭</div><p>暂无学习内容</p></div>';
 }
 
-// ── 加载数据：先尝试服务器 JSON，失败则用内嵌演示数据 ──
-async function loadData() {
-  var newsList = document.getElementById('newsList');
-  var learnDiv = document.getElementById('learningContent');
+// ═══════════════════════════════════════════════
+//  自动刷新倒计时
+// ═══════════════════════════════════════════════
+function startRefreshTimer() {
+  var remaining = AUTO_REFRESH_SEC;
+  var info = document.getElementById('refreshInfo');
+  function tick() {
+    if (remaining <= 0) {
+      loadData(true);
+      return;
+    }
+    var m = Math.floor(remaining / 60);
+    var s = remaining % 60;
+    info.textContent = m + '分' + (s < 10 ? '0' : '') + s + '秒后自动刷新';
+    remaining--;
+  }
+  if (countdownInterval) clearInterval(countdownInterval);
+  tick();
+  countdownInterval = setInterval(tick, 1000);
+}
 
-  // 显示加载状态
-  newsList.innerHTML = '<div class="empty-state"><div class="loading-spinner"></div><p>正在加载新闻...</p></div>';
-  learnDiv.innerHTML = '<div class="empty-state"><div class="loading-spinner"></div><p>正在加载学习内容...</p></div>';
+// ═══════════════════════════════════════════════
+//  手动刷新
+// ═══════════════════════════════════════════════
+function refreshNow() {
+  var btn = document.querySelector('.refresh-btn');
+  btn.classList.add('spinning');
+  loadData(false).finally(function() {
+    setTimeout(function(){ btn.classList.remove('spinning'); }, 600);
+  });
+  showToast('🔄 正在刷新数据...');
+}
+
+// ═══════════════════════════════════════════════
+//  加载数据
+// ═══════════════════════════════════════════════
+async function loadData(silent) {
+  if (!silent) {
+    document.getElementById('heroArea').innerHTML =
+      '<div class="loading-skeleton"><div class="skeleton-card"><div class="skeleton-line w80"></div><div class="skeleton-line w50"></div><div class="skeleton-line w30"></div></div><div class="skeleton-card"><div class="skeleton-line w80"></div><div class="skeleton-line w50"></div><div class="skeleton-line w30"></div></div></div>';
+    document.getElementById('newsGridArea').innerHTML =
+      '<div class="loading-skeleton"><div class="skeleton-card"><div class="skeleton-line w80"></div><div class="skeleton-line w50"></div></div><div class="skeleton-card"><div class="skeleton-line w80"></div><div class="skeleton-line w50"></div></div><div class="skeleton-card"><div class="skeleton-line w80"></div><div class="skeleton-line w50"></div></div><div class="skeleton-card"><div class="skeleton-line w80"></div><div class="skeleton-line w50"></div></div></div>';
+  }
 
   var newsOk = false;
   var learnOk = false;
@@ -531,14 +909,18 @@ async function loadData() {
     if (!resp.ok) resp = await fetchWithTimeout(NEWS_JSON);
     if (resp.ok) {
       var data = await resp.json();
-      renderNews(data.news || [], data.updated, false);
+      var newsArr = data.news || [];
+      allNews = newsArr;
+      isUsingDemo = false;
+      renderAll(newsArr, data.updated, false);
       newsOk = true;
     }
   } catch(e) { console.log('fetch 新闻失败: ' + e.message); }
 
   if (!newsOk) {
-    // 回退到内嵌演示数据
-    renderNews(DEMO_HOT.news, null, true);
+    allNews = DEMO_HOT.news;
+    isUsingDemo = true;
+    renderAll(DEMO_HOT.news, null, true);
   }
 
   // ── 加载学习 ──
@@ -554,15 +936,48 @@ async function loadData() {
   if (!learnOk) {
     renderLearning(DEMO_LEARN, true);
   }
+
+  startRefreshTimer();
+  if (!silent) {
+    showToast(newsOk ? '✅ 数据已更新' : '⚠️ 使用演示数据');
+  }
 }
 
-// ── 注入重试按钮样式 ──
+// ═══════════════════════════════════════════════
+//  统一渲染
+// ═══════════════════════════════════════════════
+function renderAll(newsArr, updated, isDemo) {
+  var timeEl = document.getElementById('updateTime');
+  // updateTime span 不存在了，用 refreshInfo
+  var info = document.getElementById('refreshInfo');
+  if (updated) {
+    info.setAttribute('data-updated', updated);
+  }
+
+  // 按热度排序
+  var sorted = newsArr.slice().sort(function(a, b) { return (b.hot_score || 0) - (a.hot_score || 0); });
+
+  // 前三作为 hero
+  var heroNews = sorted.slice(0, 3);
+  var restNews = sorted.slice(3);
+
+  renderStats(sorted, updated, isDemo);
+  renderTicker(sorted);
+  renderHero(heroNews);
+  renderNewsGrid(restNews);
+}
+
+// ═══════════════════════════════════════════════
+//  启动
+// ═══════════════════════════════════════════════
+loadData(false);
+
+// ═══════════════════════════════════════════════
+//  重试按钮样式（动态注入）
+// ═══════════════════════════════════════════════
 var s = document.createElement('style');
 s.textContent = '.retry-btn{display:inline-block;margin-top:12px;padding:8px 20px;background:#1f6feb;color:#fff;border:none;border-radius:8px;cursor:pointer;font-size:14px;font-family:inherit;}.retry-btn:hover{background:#388bfd;}';
 document.head.appendChild(s);
-
-// ── 启动 ──
-loadData();
 </script>
 </body>
 </html>

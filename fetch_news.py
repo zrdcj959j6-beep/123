@@ -72,7 +72,7 @@ MULTI_SOURCE_BONUS = 20
 # 新闻文件路径
 NEWS_JSON_PATH = os.path.join(os.path.dirname(os.path.abspath(__file__)), "news.json")
 HOT_NEWS_JSON_PATH = os.path.join(os.path.dirname(os.path.abspath(__file__)), "hot_news.json")
-HOT_THRESHOLD = 60
+HOT_THRESHOLD = 30
 
 # OpenAI 客户端
 client = OpenAI(api_key=os.environ.get("OPENAI_API_KEY"))
