@@ -62,8 +62,8 @@ def generate_news():
                 item["published"] = now
             if "authority_weight" not in item:
                 item["authority_weight"] = 20
-            if "link" not in item:
-                item["link"] = ""
+            if not item.get("link"):
+                item["link"] = "https://www.google.com/search?q=" + item.get("title_cn", item.get("title", ""))[:60].replace(" ", "+")
         result = {"updated": now, "count": len(items), "news": items}
         hot = [i for i in items if i.get("hot_score", 0) >= 30]
         hot_result = {"updated": now, "count": len(hot), "news": hot}
@@ -135,7 +135,8 @@ def generate_daily():
         items = data.get("items", [])
         for i, item in enumerate(items):
             item["id"] = f"d{i+1:03d}"
-            item["link"] = ""
+            if not item.get("link"):
+                item["link"] = "https://www.google.com/search?q=" + item.get("title_cn", "")[:60].replace(" ", "+")
             item["published"] = now
         result = {"updated": now, "count": len(items), "items": items}
 

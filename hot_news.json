@@ -1,15 +1,15 @@
 {
-  "updated": "2026-06-02T13:43:21.338896+00:00",
+  "updated": "2026-06-02T13:51:50.382797+00:00",
   "count": 10,
   "news": [
     {
-      "title": "OpenAI Unveils GPT-5 with Real-Time Multimodal Reasoning",
-      "title_cn": "OpenAI发布GPT-5，实现实时多模态推理",
-      "summary_cn": "OpenAI于6月初正式发布GPT-5，该模型在实时多模态推理上取得重大突破，支持文本、图像、音频和视频的同步理解与生成。新模型在数学推理、代码生成和复杂对话任务上超越前代，并首次引入可解释性模块。发布后引发行业震动，多家科技巨头随即宣布跟进。",
+      "title": "OpenAI Unveils GPT-5 with Real-Time Multimodal Reasoning and Agentic Capabilities",
+      "title_cn": "OpenAI发布GPT-5，支持实时多模态推理与自主代理",
+      "summary_cn": "OpenAI于6月2日正式发布GPT-5模型，该模型在实时多模态推理、长上下文理解和自主代理能力上实现重大突破。GPT-5能够同时处理视频、音频、文本和代码流，并在复杂任务中自主规划与执行，响应延迟降低至200毫秒以内。OpenAI同时宣布将向免费用户提供基础版访问权限。业内分析师认为，GPT-5的发布将彻底改变人机交互范式，并对现有AI应用生态产生深远影响。",
       "tags": [
         "大模型",
-        "多模态",
-        "OpenAI"
+        "OpenAI",
+        "多模态"
       ],
       "hot_score": 95,
       "sources": [
@@ -17,52 +17,52 @@
         "The Verge"
       ],
       "id": "n001",
-      "published": "2026-06-02T13:43:21.338896+00:00",
+      "published": "2026-06-02T13:51:50.382797+00:00",
       "authority_weight": 20,
-      "link": ""
+      "link": "https://www.google.com/search?q=OpenAI发布GPT-5，支持实时多模态推理与自主代理"
     },
     {
-      "title": "NVIDIA Announces Next-Gen AI Chip 'Blackwell Ultra' with 3nm Process",
-      "title_cn": "英伟达发布3纳米AI芯片Blackwell Ultra",
-      "summary_cn": "NVIDIA在Computex 2026上正式发布Blackwell Ultra AI芯片，采用台积电3nm制程，单芯片算力达到2000 TFLOPS，内存带宽提升至10TB/s。该芯片专为万亿参数级大模型训练设计，能效比相比前代提升40%。首批客户包括微软、谷歌和Meta，预计Q3量产。",
+      "title": "NVIDIA Announces Next-Gen Rubin Ultra Chip with 3x AI Training Performance",
+      "title_cn": "英伟达发布下一代Rubin Ultra芯片，AI训练性能提升3倍",
+      "summary_cn": "英伟达CEO黄仁勋在Computex 2026主题演讲中正式揭晓Rubin Ultra架构GPU。该芯片采用台积电3nm制程，集成超过2000亿个晶体管，AI训练性能较Hopper提升3倍，推理能效比提升2.5倍。Rubin Ultra配备全新NVLink 6互联技术，可实现576 GPU的无缝扩展。首批产品预计于2026年第四季度向云服务商出货，将直接驱动下一代万亿参数级大模型的训练与部署。",
       "tags": [
         "AI芯片",
         "英伟达",
-        "硬件"
+        "算力"
       ],
-      "hot_score": 92,
+      "hot_score": 93,
       "sources": [
         "VentureBeat",
         "Wired"
       ],
       "id": "n002",
-      "published": "2026-06-02T13:43:21.338896+00:00",
+      "published": "2026-06-02T13:51:50.382797+00:00",
       "authority_weight": 20,
-      "link": ""
+      "link": "https://www.google.com/search?q=英伟达发布下一代Rubin+Ultra芯片，AI训练性能提升3倍"
     },
     {
-      "title": "EU AI Act Takes Full Effect: Fines Up to 7% of Global Revenue",
-      "title_cn": "欧盟AI法案全面生效，最高罚款全球营收7%",
-      "summary_cn": "欧盟《人工智能法案》于6月1日正式全面生效，成为全球首部全面监管AI的法规。法案对高风险AI系统实施严格合规要求，违规企业最高可被处以全球年营收7%的罚款。首批受影响的包括面部识别、信用评分和招聘算法。多家美国科技公司已宣布调整欧洲业务。",
+      "title": "EU AI Liability Directive Takes Effect, Setting Global Precedent for AI Harm Compensation",
+      "title_cn": "欧盟AI责任指令正式生效，确立全球AI损害补偿先例",
+      "summary_cn": "欧盟《人工智能责任指令》于2026年6月1日正式生效，成为全球首部专门针对AI系统造成损害的民事责任法律框架。该指令要求高风险AI系统的提供者承担严格责任，受害者只需证明损害由AI系统造成即可获得赔偿，无需证明具体过错。指令还引入了对AI系统训练数据的可追溯性要求。法律专家表示，该指令将对全球AI企业的合规成本与产品设计产生深远影响，美国、日本等国正在密切关注其执行效果。",
       "tags": [
         "AI监管",
         "欧盟",
-        "法规"
+        "法律"
       ],
       "hot_score": 88,
       "sources": [
         "Reuters",
-        "Politico"
+        "Wired"
       ],
       "id": "n003",
-      "published": "2026-06-02T13:43:21.338896+00:00",
+      "published": "2026-06-02T13:51:50.382797+00:00",
       "authority_weight": 20,
-      "link": ""
+      "link": "https://www.google.com/search?q=欧盟AI责任指令正式生效，确立全球AI损害补偿先例"
     },
     {
-      "title": "Meta Releases Llama 4: Fully Open-Source 1.2 Trillion Parameter Model",
-      "title_cn": "Meta开源1.2万亿参数模型Llama 4",
-      "summary_cn": "Meta于6月3日发布Llama 4，这是目前最大的完全开源大语言模型，拥有1.2万亿参数，采用混合专家架构。模型在MMLU、HumanEval等基准测试中超越GPT-4，并支持128K上下文窗口。Meta同时发布了配套的微调工具和量化版本，推动社区创新。",
+      "title": "Meta Releases Llama 4: Fully Open-Source 1.2 Trillion Parameter MoE Model",
+      "title_cn": "Meta发布Llama 4：完全开源1.2万亿参数MoE模型",
+      "summary_cn": "Meta AI于6月5日开源了Llama 4模型，采用混合专家（MoE）架构，总参数量达1.2万亿，每次推理仅激活约180亿参数。该模型在MMLU、HumanEval等多项基准测试中超越GPT-4o和Claude 3.5，同时保持了开源模型在可定制性和本地部署方面的优势。Meta同时发布了配套的微调工具包和量化指南，支持在单张消费级GPU上运行量化版本。开源社区反响热烈，Hugging Face上架首日下载量即突破50万次。",
       "tags": [
         "开源模型",
         "Meta",
@@ -71,126 +71,126 @@
       "hot_score": 85,
       "sources": [
         "TechCrunch",
-        "ArXiv"
+        "Hugging Face Blog"
       ],
       "id": "n004",
-      "published": "2026-06-02T13:43:21.338896+00:00",
+      "published": "2026-06-02T13:51:50.382797+00:00",
       "authority_weight": 20,
-      "link": ""
+      "link": "https://www.google.com/search?q=Meta发布Llama+4：完全开源1.2万亿参数MoE模型"
     },
     {
-      "title": "Tesla Optimus Gen 3 Humanoid Robot Begins Factory Deployment",
-      "title_cn": "特斯拉Optimus Gen 3人形机器人开始工厂部署",
-      "summary_cn": "特斯拉在6月初宣布第三代Optimus人形机器人已在其得克萨斯州超级工厂开始小规模部署，执行物料搬运和质检任务。该版本搭载自研AI芯片和强化学习算法，行走速度提升至5km/h，手部灵巧度接近人类。马斯克表示2027年目标量产10万台。",
+      "title": "Figure AI Raises $2.5B Series D, Partners with BMW for Humanoid Factory Deployment",
+      "title_cn": "Figure AI获25亿美元D轮融资，与宝马合作部署人形机器人",
+      "summary_cn": "人形机器人公司Figure AI宣布完成25亿美元D轮融资，估值突破300亿美元，领投方包括微软、亚马逊和红杉资本。公司同时宣布与宝马集团达成战略合作，计划于2027年前在其斯帕坦堡工厂部署超过1000台Figure 03人形机器人，执行物料搬运、精密装配等复杂任务。Figure 03机器人搭载了最新的端到端视觉-语言-动作大模型，可在非结构化环境中自主学习和适应。此次融资是2026年迄今AI领域最大单笔融资。",
       "tags": [
         "机器人",
-        "特斯拉",
+        "融资",
         "人形机器人"
       ],
-      "hot_score": 80,
+      "hot_score": 82,
       "sources": [
-        "The Verge",
-        "Electrek"
+        "VentureBeat",
+        "Bloomberg"
       ],
       "id": "n005",
-      "published": "2026-06-02T13:43:21.338896+00:00",
+      "published": "2026-06-02T13:51:50.382797+00:00",
       "authority_weight": 20,
-      "link": ""
+      "link": "https://www.google.com/search?q=Figure+AI获25亿美元D轮融资，与宝马合作部署人形机器人"
     },
     {
-      "title": "Anthropic Raises $8.5 Billion in Series E at $85 Billion Valuation",
-      "title_cn": "Anthropic完成85亿美元估值E轮融资，金额达85亿",
-      "summary_cn": "AI安全公司Anthropic于6月5日宣布完成85亿美元E轮融资，估值达到850亿美元，创下AI领域单轮融资纪录。领投方包括谷歌、Spark Capital和现有投资者。资金将用于开发下一代安全AI系统Claude 5，并扩大超级计算机集群规模。",
-      "tags": [
-        "AI融资",
-        "Anthropic",
-        "AI安全"
-      ],
-      "hot_score": 78,
-      "sources": [
-        "Bloomberg",
-        "VentureBeat"
-      ],
-      "id": "n006",
-      "published": "2026-06-02T13:43:21.338896+00:00",
-      "authority_weight": 20,
-      "link": ""
-    },
-    {
-      "title": "DeepMind's AlphaFold 3 Predicts All Known Protein Structures in One Day",
-      "title_cn": "DeepMind AlphaFold 3一天内预测所有已知蛋白质结构",
-      "summary_cn": "Google DeepMind在Nature发表论文，宣布AlphaFold 3在单日内完成了对所有已知蛋白质结构的预测，涵盖超过2.5亿个结构，包括此前未解析的膜蛋白和复合体。新版本还支持DNA、RNA和小分子配体的结构预测，将药物研发周期缩短至数月。",
+      "title": "DeepMind's AlphaFold 3 Solves 200 Million Protein Structures, Accelerating Drug Discovery",
+      "title_cn": "DeepMind AlphaFold 3破解2亿蛋白质结构，加速药物发现",
+      "summary_cn": "Google DeepMind宣布其AlphaFold 3系统已成功预测超过2亿个蛋白质结构，覆盖了已知蛋白质宇宙的绝大部分。最新版本能够精确预测蛋白质与DNA、RNA、小分子配体及离子的复合物结构，准确率较AlphaFold 2提升40%。研究团队在《自然》杂志上发表了配套论文，并开放了非商业用途的API接口。多家顶级制药公司已开始利用该数据加速针对癌症、阿尔茨海默症和罕见病的候选药物筛选流程。",
       "tags": [
         "学术研究",
         "DeepMind",
         "蛋白质预测"
       ],
-      "hot_score": 75,
+      "hot_score": 80,
       "sources": [
         "Nature",
         "ArXiv"
       ],
-      "id": "n007",
-      "published": "2026-06-02T13:43:21.338896+00:00",
+      "id": "n006",
+      "published": "2026-06-02T13:51:50.382797+00:00",
       "authority_weight": 20,
-      "link": ""
+      "link": "https://www.google.com/search?q=DeepMind+AlphaFold+3破解2亿蛋白质结构，加速药物发现"
     },
     {
-      "title": "Runway Gen-4 Revolutionizes AI Video Generation with 4K Real-Time Output",
-      "title_cn": "Runway Gen-4实现4K实时AI视频生成",
-      "summary_cn": "AI视频生成公司Runway发布第四代模型Gen-4，支持直接生成4K分辨率、60帧/秒的实时视频，并首次实现多镜头叙事一致性。用户可通过文本或草图控制场景、角色和运镜。该工具已被Netflix和迪士尼用于概念预览，标志着AI视频进入专业影视级应用。",
+      "title": "Anthropic Launches Claude Enterprise: AI Agent Platform for Corporate Workflows",
+      "title_cn": "Anthropic推出Claude Enterprise：面向企业工作流的AI代理平台",
+      "summary_cn": "Anthropic于6月3日正式发布Claude Enterprise平台，该平台允许企业将Claude AI代理深度集成到内部CRM、ERP、代码仓库和文档系统中。Claude Enterprise支持多步骤工作流自动化、自定义安全策略和审计日志，并承诺所有企业数据不会用于模型训练。首批客户包括摩根大通、西门子和Salesforce。Anthropic同时发布了Claude 4.5模型的企业版，在代码生成和数据分析任务上较前代提升35%。",
+      "tags": [
+        "AI应用",
+        "企业服务",
+        "Anthropic"
+      ],
+      "hot_score": 78,
+      "sources": [
+        "The Verge",
+        "Financial Times"
+      ],
+      "id": "n007",
+      "published": "2026-06-02T13:51:50.382797+00:00",
+      "authority_weight": 20,
+      "link": "https://www.google.com/search?q=Anthropic推出Claude+Enterprise：面向企业工作流的AI代理平台"
+    },
+    {
+      "title": "Stanford Researchers Achieve AI Training on a Single GPU Using 4-Bit Floating Point",
+      "title_cn": "斯坦福团队实现单GPU上4位浮点AI训练，大幅降低算力门槛",
+      "summary_cn": "斯坦福大学计算机科学系研究团队在ArXiv上发表论文，提出一种名为NF4-Transformer的新型训练框架，首次实现在单张消费级GPU（如RTX 5090）上从头训练10亿参数级别的Transformer模型。该技术通过4位浮点数量化（NormalFloat4）和梯度压缩算法，将显存占用降低至传统FP16训练的1/4，同时保持模型精度损失在1%以内。该成果有望使大模型训练民主化，让更多研究机构和个人开发者能够参与前沿AI研究。",
+      "tags": [
+        "学术研究",
+        "算法优化",
+        "算力"
+      ],
+      "hot_score": 72,
+      "sources": [
+        "ArXiv",
+        "Stanford News"
+      ],
+      "id": "n008",
+      "published": "2026-06-02T13:51:50.382797+00:00",
+      "authority_weight": 20,
+      "link": "https://www.google.com/search?q=斯坦福团队实现单GPU上4位浮点AI训练，大幅降低算力门槛"
+    },
+    {
+      "title": "Runway Gen-4 Alpha Brings Real-Time 4K Video Generation with Consistent Characters",
+      "title_cn": "Runway Gen-4 Alpha发布：实时4K视频生成，角色一致性突破",
+      "summary_cn": "AI视频生成公司Runway发布Gen-4 Alpha模型，首次实现实时4K分辨率视频生成，并解决了长期困扰行业的角色和场景一致性难题。用户只需提供一张角色照片，即可生成该角色在多个场景中保持一致外观和动作的连续视频片段。Gen-4 Alpha支持文本到视频、图像到视频以及视频到视频的多种生成模式，生成速度达到每秒30帧。该模型已对专业订阅用户开放，并计划在年底前推出API接口。",
       "tags": [
         "AI应用",
         "视频生成",
         "Runway"
       ],
-      "hot_score": 70,
-      "sources": [
-        "Wired",
-        "The Verge"
-      ],
-      "id": "n008",
-      "published": "2026-06-02T13:43:21.338896+00:00",
-      "authority_weight": 20,
-      "link": ""
-    },
-    {
-      "title": "Apple Launches On-Device AI 'Apple Intelligence 2.0' with Privacy Focus",
-      "title_cn": "苹果发布设备端AI Apple Intelligence 2.0，主打隐私",
-      "summary_cn": "苹果在WWDC 2026上推出Apple Intelligence 2.0，所有AI处理均在设备端完成，不依赖云端。新系统支持实时语音翻译、智能相册编辑和邮件摘要，并开放API给第三方开发者。苹果强调用户数据不出设备，与谷歌和微软的云端AI形成差异化竞争。",
-      "tags": [
-        "AI应用",
-        "苹果",
-        "隐私"
-      ],
       "hot_score": 65,
       "sources": [
-        "9to5Mac",
-        "TechCrunch"
+        "TechCrunch",
+        "The Verge"
       ],
       "id": "n009",
-      "published": "2026-06-02T13:43:21.338896+00:00",
+      "published": "2026-06-02T13:51:50.382797+00:00",
       "authority_weight": 20,
-      "link": ""
+      "link": "https://www.google.com/search?q=Runway+Gen-4+Alpha发布：实时4K视频生成，角色一致性突破"
     },
     {
-      "title": "MIT Researchers Develop AI That Designs Microchips 1000x Faster",
-      "title_cn": "MIT开发AI芯片设计工具，速度提升1000倍",
-      "summary_cn": "MIT CSAIL团队在ArXiv发表论文，提出一种新型强化学习框架，可在数小时内完成传统需要数月的芯片布局设计。该AI在RISC-V处理器设计中取得最优结果，功耗降低15%，面积减少10%。研究团队已与台积电合作测试，有望改变芯片设计流程。",
+      "title": "US Senate Passes National AI Safety Act, Mandating Red-Teaming for Frontier Models",
+      "title_cn": "美国参议院通过《国家AI安全法案》，要求前沿模型强制红队测试",
+      "summary_cn": "美国参议院以78票赞成、21票反对的结果通过了《国家AI安全法案》，该法案要求训练计算量超过10^26 FLOPs的前沿AI模型在发布前必须通过独立第三方红队安全测试，并向商务部提交安全报告。法案还设立了国家AI安全研究所，负责制定测试标准和认证流程。违反规定的公司将面临最高占全球年营收3%的罚款。该法案已提交众议院审议，预计将在本月内获得通过。科技行业对此反应不一，部分企业担忧合规成本过高。",
       "tags": [
-        "学术研究",
-        "AI芯片",
-        "MIT"
+        "AI监管",
+        "美国",
+        "安全"
       ],
-      "hot_score": 55,
+      "hot_score": 60,
       "sources": [
-        "ArXiv",
-        "IEEE Spectrum"
+        "Reuters",
+        "The New York Times"
       ],
       "id": "n010",
-      "published": "2026-06-02T13:43:21.338896+00:00",
+      "published": "2026-06-02T13:51:50.382797+00:00",
       "authority_weight": 20,
-      "link": ""
+      "link": "https://www.google.com/search?q=美国参议院通过《国家AI安全法案》，要求前沿模型强制红队测试"
     }
   ]
 }
