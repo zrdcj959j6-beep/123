@@ -1,4 +1,4 @@
-name: 🤖 AI 日报自动更新
+name: Daily AI News Update
 on:
   schedule:
     - cron: '0 22 * * *'
@@ -14,41 +14,22 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: '3.11'
-      - name: Install dependencies
-        run: pip install openai requests
-      - name: Generate news
-        env:
-          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
-        run: python gen_real.py
-      - name: Generate daily
-        env:
-          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
-        run: python gen_real_daily.py
-      - name: Generate learning
+      - run: pip install openai
+      - name: Generate all content
         env:
           OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
         run: |
-          python -c "
-import json, os
-from datetime import datetime, timezone
-from openai import OpenAI
-client = OpenAI(api_key=os.environ['OPENAI_API_KEY'], base_url='https://api.deepseek.com')
-def ask(s,u,t=0.6):
-    r=client.chat.completions.create(model='deepseek-chat',messages=[{'role':'system','content':s},{'role':'user','content':u}],temperature=t,max_tokens=2000)
-    raw=r.choices[0].message.content.strip()
-    if raw.startswith('```'): raw=raw.split('\n',1)[-1]; raw=raw[:-3] if raw.endswith('```') else raw
-    return json.loads(raw)
-now=datetime.now(timezone.utc).isoformat()
-lt=ask('AI教育者。选一个2026年热门AI术语解释。JSON:{\"word\":\"术语\",\"explanation_cn\":\"150-250字解释\"}','选有深度的术语',0.8)
-lp=ask('AI论文解读专家。虚构一篇2026年6月AI论文做中文解读。JSON:{\"title\":\"英文标题\",\"title_cn\":\"中文标题\",\"interpretation_cn\":\"300-500字解读\",\"authors\":\"作者 et al.\",\"arxiv_id\":\"2506.xxxxx\"}','',0.6)
-lp['link']=f'https://arxiv.org/abs/{lp.get(\"arxiv_id\",\"2506.00001\")}'; lp['published']=now
-with open('learning.json','w',encoding='utf-8') as f: json.dump({'updated':now,'term':lt,'paper':lp},f,ensure_ascii=False,indent=2)
-print(f'learning: {lt[\"word\"]}')
-"
-      - name: Commit and push
+          python gen_real.py
+          python gen_real_daily.py
+          python gen_learning.py
+      - name: Push changes
         run: |
-          git config user.name "AI Daily Bot"
-          git config user.email "bot@ai-daily.local"
+          git config user.name "AI Bot"
+          git config user.email "bot@ai.local"
           git add news.json hot_news.json daily.json learning.json
-          git diff --staged --quiet || git commit -m "🤖 每日自动更新"
-          git push
+          if git diff --staged --quiet; then
+            echo "No changes"
+          else
+            git commit -m "Auto update $(date -u +%Y-%m-%d)"
+            git push
+          fi
