@@ -71,7 +71,7 @@ FALLBACK_TERMS = [
 ]
 
 # OpenAI 客户端
-client = OpenAI(api_key=os.environ.get("OPENAI_API_KEY"))
+client = OpenAI(api_key=os.environ.get("OPENAI_API_KEY"), base_url="https://api.deepseek.com")
 
 
 # ── 工具函数 ──────────────────────────────────────────
@@ -128,7 +128,7 @@ def generate_term_with_ai():
 
     try:
         resp = client.chat.completions.create(
-            model="gpt-4o-mini",
+            model="deepseek-chat",
             messages=[
                 {"role": "system", "content": system_prompt},
                 {"role": "user", "content": "请随机选一个2024-2026年热门的AI术语，不要选太基础的（如'机器学习'、'深度学习'），选有深度的。"},
@@ -167,7 +167,7 @@ def generate_paper_interpretation(paper):
 
     try:
         resp = client.chat.completions.create(
-            model="gpt-4o-mini",
+            model="deepseek-chat",
             messages=[
                 {"role": "system", "content": system_prompt},
                 {"role": "user", "content": user_prompt},

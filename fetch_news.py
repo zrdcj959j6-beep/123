@@ -75,7 +75,7 @@ HOT_NEWS_JSON_PATH = os.path.join(os.path.dirname(os.path.abspath(__file__)), "h
 HOT_THRESHOLD = 30
 
 # OpenAI 客户端
-client = OpenAI(api_key=os.environ.get("OPENAI_API_KEY"))
+client = OpenAI(api_key=os.environ.get("OPENAI_API_KEY"), base_url="https://api.deepseek.com")
 
 # ── 工具函数 ──────────────────────────────────────────
 
@@ -231,7 +231,7 @@ def call_openai_for_news(news_item):
 
     try:
         resp = client.chat.completions.create(
-            model="gpt-4o-mini",
+            model="deepseek-chat",
             messages=[
                 {"role": "system", "content": system_prompt},
                 {"role": "user", "content": user_prompt},

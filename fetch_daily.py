@@ -127,7 +127,7 @@ MOOD_MAP = {
 }
 
 # OpenAI 客户端
-client = OpenAI(api_key=os.environ.get("OPENAI_API_KEY"))
+client = OpenAI(api_key=os.environ.get("OPENAI_API_KEY"), base_url="https://api.deepseek.com")
 
 
 # ── 工具函数 ──────────────────────────────────────────
@@ -187,7 +187,7 @@ def call_openai_for_daily(item):
 
     try:
         resp = client.chat.completions.create(
-            model="gpt-4o-mini",
+            model="deepseek-chat",
             messages=[
                 {"role": "system", "content": system_prompt},
                 {"role": "user", "content": user_prompt},
