@@ -13,16 +13,16 @@ client = OpenAI(api_key=os.environ.get("OPENAI_API_KEY"), base_url="https://api.
 
 # ── 真实新闻源（WebSearch 搜索结果，链接真实可打开）──
 REAL_NEWS = [
-    {"url": "https://www.jiqizhixin.com/articles/2026-06-02-6", "title": "图灵奖得主Sutton新作：AI的下一步，是走向「生成认知」", "source": "机器之心"},
-    {"url": "https://www.jiqizhixin.com/articles/2026-06-02-10", "title": "英伟达一通发布，物理AI全都智能体化了", "source": "机器之心"},
-    {"url": "https://techorange.com/2026/06/01/ai-agent-nvidia-computex-gtc-taipei-keynote/", "title": "黄仁勋宣布「有用的AI已经到来」：从AI工厂到实体AI，全面押注代理式AI", "source": "TechOrange"},
-    {"url": "https://www.163.com/dy/article/KUDNAU9D0511FQO9.html", "title": "曝豆包将正式付费；xAI招募中文AI导师训练Grok；OpenAI现场演示无APP手机", "source": "网易/极客头条"},
-    {"url": "https://www.chinaz.com/ainews/28556.shtml", "title": "颠覆传统交互！OpenAI现场演示无App手机，所有界面全靠AI实时生成", "source": "站长之家"},
-    {"url": "https://www.aibase.com/zh/news/28495", "title": "狂砸750亿欧元！软银欧洲史上最大AI投资落地，联手OpenAI在法建立超级算力中心", "source": "AIbase"},
-    {"url": "https://www.oreilly.com/radar/radar-trends-to-watch-june-2026/", "title": "Radar Trends to Watch: June 2026 — O'Reilly", "source": "O'Reilly"},
-    {"url": "https://www.cnblogs.com/dqtx33/p/20255492", "title": "OpenAI终于下场做机器人，ChatGPT的下一站不是聊天，而是现实世界", "source": "博客园"},
-    {"url": "https://blockchain.news/ainews/nvidia-rtx-spark-powers-windows-ai-breakthrough", "title": "NVIDIA RTX Spark Powers Windows AI Breakthrough", "source": "Blockchain News"},
-    {"url": "https://www.theneuron.ai/explainer-articles/everything-that-happened-in-ai-today-monday-june-1-2026/", "title": "Everything That Happened in AI Today — Monday, June 1, 2026", "source": "The Neuron"},
+    {"url": "https://36kr.com/p/3834277983610753", "title": "黄仁勋宣布Rubin全面投产，4万名工程师参与构建，史上最强CPU同步亮相", "source": "36氪"},
+    {"url": "https://www.ithome.com/0/958/480.htm", "title": "微软首个自研推理AI模型MAI-Thinking-1、新Copilot超级应用曝光", "source": "IT之家"},
+    {"url": "https://www.ithome.com/0/958/727.htm", "title": "黄仁勋回应AI威胁论，称现在是软件公司的绝佳时代", "source": "IT之家"},
+    {"url": "https://arstechnica.com/2026/06/", "title": "Ars Technica June 2026: AI costs, GitHub Copilot pricing, Meta AI chatbot hacked", "source": "Ars Technica"},
+    {"url": "https://36kr.com/p/3834111984363401", "title": "VAST斩获近2亿美元A轮系列融资，同步推出世界模型", "source": "36氪"},
+    {"url": "https://m.ithome.com/html/958103.htm", "title": "英伟达推出全球首款全开源全模态物理AI大模型Cosmos 3", "source": "IT之家"},
+    {"url": "https://www.oreilly.com/radar/radar-trends-to-watch-june-2026/", "title": "Radar Trends to Watch: June 2026", "source": "O'Reilly"},
+    {"url": "https://www.cnblogs.com/dqtx33/p/20255492", "title": "OpenAI终于下场做机器人，ChatGPT下一站是现实世界", "source": "博客园"},
+    {"url": "https://www.36kr.com/p/3833957693515398", "title": "这届10后20后，已经不想跟真人聊天了？AI原住民时代来临", "source": "36氪"},
+    {"url": "https://m.ithome.com/html/958109.htm", "title": "英伟达和台积电将AI引入晶圆厂，推动半导体设计与制造发展", "source": "IT之家"},
 ]
 
 def ask_deepseek(system, user, temp=0.5, max_tokens=800):

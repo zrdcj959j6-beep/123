@@ -1,197 +1,205 @@
 {
-  "updated": "2026-06-02T14:51:05.378785+00:00",
+  "updated": "2026-06-02T15:02:59.757988+00:00",
   "count": 10,
   "news": [
     {
-      "title_cn": "图灵奖得主Sutton新作：AI未来方向转向“生成认知”",
-      "summary_cn": "图灵奖得主理查德·萨顿（Richard Sutton）发表最新观点，认为人工智能的下一步发展应从当前的大规模数据训练转向“生成认知”（Generative Cognition）。他强调，AI系统需要具备主动生成假设、推理和探索的能力，而非仅仅依赖被动学习。这一理论可能重塑AI研究范式，推动更接近人类智能的自主决策系统。",
-      "tags": [
-        "图灵奖",
-        "生成认知",
-        "AI理论",
-        "Sutton"
-      ],
-      "hot_score": 92,
-      "id": "r001",
-      "title": "图灵奖得主Sutton新作：AI的下一步，是走向「生成认知」",
-      "link": "https://www.jiqizhixin.com/articles/2026-06-02-6",
-      "sources": [
-        "机器之心"
-      ],
-      "published": "2026-06-02T14:51:05.378785+00:00",
-      "authority_weight": 20
-    },
-    {
-      "title_cn": "英伟达发布物理AI全面智能体化，推动机器人自主操作",
-      "summary_cn": "英伟达在最新发布会上推出了一系列物理AI技术，将智能体（Agent）概念引入机器人领域。通过整合实时感知、决策与执行，物理AI能够自主完成复杂任务，如工业装配和自动驾驶。此举标志着AI从虚拟世界向实体世界的重大跨越，英伟达正加速构建从芯片到算法的全栈生态。",
+      "title_cn": "黄仁勋宣布Rubin全面投产，4万工程师参与，史上最强CPU同步亮相",
+      "summary_cn": "英伟达CEO黄仁勋在最新发布会上宣布，下一代AI芯片架构Rubin已全面投产，超过4万名工程师参与构建。同时，英伟达还同步推出了史上最强CPU，性能大幅提升，旨在巩固其在AI计算领域的领导地位。这一里程碑标志着英伟达在数据中心和AI训练方面的持续突破。",
       "tags": [
         "英伟达",
-        "物理AI",
-        "智能体",
-        "机器人"
-      ],
-      "hot_score": 94,
-      "id": "r002",
-      "title": "英伟达一通发布，物理AI全都智能体化了",
-      "link": "https://www.jiqizhixin.com/articles/2026-06-02-10",
-      "sources": [
-        "机器之心"
-      ],
-      "published": "2026-06-02T14:51:05.378785+00:00",
-      "authority_weight": 20
-    },
-    {
-      "title_cn": "黄仁勋宣布“有用AI已到来”：全面押注代理式AI与AI工厂",
-      "summary_cn": "英伟达CEO黄仁勋在主题演讲中宣称“有用的AI已经到来”，并宣布公司战略全面转向代理式AI（Agentic AI）和实体AI。他提出“AI工厂”概念，即通过大规模算力集群实时生成智能服务，同时强调从数据中心到边缘设备的全链条AI部署。这一宣言被业界视为AI商业化落地的里程碑。",
-      "tags": [
-        "黄仁勋",
-        "代理式AI",
-        "AI工厂",
-        "实体AI"
+        "Rubin",
+        "AI芯片",
+        "CPU",
+        "黄仁勋"
       ],
       "hot_score": 95,
+      "id": "r001",
+      "title": "黄仁勋宣布Rubin全面投产，4万名工程师参与构建，史上最强CPU同步亮相",
+      "link": "https://36kr.com/p/3834277983610753",
+      "sources": [
+        "36氪"
+      ],
+      "published": "2026-06-02T15:02:59.757988+00:00",
+      "authority_weight": 20
+    },
+    {
+      "title_cn": "微软首个自研推理AI模型MAI-Thinking-1及新Copilot超级应用曝光",
+      "summary_cn": "微软在内部测试中曝光了其首个自研推理AI模型MAI-Thinking-1，该模型专注于复杂逻辑推理和决策支持。同时，微软正在开发一款名为Copilot的超级应用，整合了办公、编程和数据分析功能，旨在打造一站式AI助手。此举标志着微软在AI领域的深度自研布局。",
+      "tags": [
+        "微软",
+        "MAI-Thinking-1",
+        "Copilot",
+        "AI模型",
+        "超级应用"
+      ],
+      "hot_score": 93,
+      "id": "r002",
+      "title": "微软首个自研推理AI模型MAI-Thinking-1、新Copilot超级应用曝光",
+      "link": "https://www.ithome.com/0/958/480.htm",
+      "sources": [
+        "IT之家"
+      ],
+      "published": "2026-06-02T15:02:59.757988+00:00",
+      "authority_weight": 20
+    },
+    {
+      "title_cn": "黄仁勋回应AI威胁论，称现在是软件公司的绝佳时代",
+      "summary_cn": "英伟达CEO黄仁勋在公开场合回应了关于AI威胁论的争议，强调AI技术不会取代人类，而是为软件公司创造了前所未有的机遇。他指出，当前是软件公司利用AI创新的绝佳时代，并呼吁行业专注于AI的积极应用，而非恐惧其潜在风险。",
+      "tags": [
+        "黄仁勋",
+        "AI威胁论",
+        "软件公司",
+        "创新",
+        "科技发展"
+      ],
+      "hot_score": 91,
       "id": "r003",
-      "title": "黄仁勋宣布「有用的AI已经到来」：从AI工厂到实体AI，全面押注代理式AI",
-      "link": "https://techorange.com/2026/06/01/ai-agent-nvidia-computex-gtc-taipei-keynote/",
+      "title": "黄仁勋回应AI威胁论，称现在是软件公司的绝佳时代",
+      "link": "https://www.ithome.com/0/958/727.htm",
       "sources": [
-        "TechOrange"
+        "IT之家"
       ],
-      "published": "2026-06-02T14:51:05.378785+00:00",
+      "published": "2026-06-02T15:02:59.757988+00:00",
       "authority_weight": 20
     },
     {
-      "title_cn": "曝豆包将正式付费；xAI招募中文AI导师；OpenAI演示无APP手机",
-      "summary_cn": "据爆料，字节跳动旗下AI助手豆包即将开启付费模式，引发用户热议。同时，马斯克的xAI正在招募中文AI导师以优化Grok模型的中文能力。此外，OpenAI现场演示了无需传统APP的AI手机概念，所有界面由AI实时生成，彻底颠覆人机交互方式。",
+      "title_cn": "Ars Technica 2026年6月报道：AI成本飙升、GitHub Copilot涨价、Meta AI聊天机器人被黑",
+      "summary_cn": "Ars Technica在2026年6月的报道中揭示了AI行业的三大热点：AI计算成本持续飙升，给中小企业带来压力；GitHub Copilot宣布涨价，引发开发者社区争议；Meta的AI聊天机器人被黑客攻击，暴露了安全漏洞。这些事件凸显了AI商业化进程中的挑战。",
       "tags": [
-        "豆包",
-        "付费",
-        "xAI",
-        "Grok",
-        "OpenAI"
-      ],
-      "hot_score": 80,
-      "id": "r004",
-      "title": "曝豆包将正式付费；xAI招募中文AI导师训练Grok；OpenAI现场演示无APP手机",
-      "link": "https://www.163.com/dy/article/KUDNAU9D0511FQO9.html",
-      "sources": [
-        "网易/极客头条"
-      ],
-      "published": "2026-06-02T14:51:05.378785+00:00",
-      "authority_weight": 20
-    },
-    {
-      "title_cn": "颠覆传统交互！OpenAI现场演示无App手机，界面全由AI实时生成",
-      "summary_cn": "OpenAI在最新活动中展示了一款概念手机，完全摒弃传统应用商店和APP，所有用户界面均由AI根据上下文实时生成。用户只需语音或手势指令，AI即可动态创建所需功能界面。这一设计旨在简化交互流程，但隐私和算力消耗问题引发讨论。",
-      "tags": [
-        "OpenAI",
-        "无APP手机",
-        "AI界面",
-        "交互创新"
+        "AI成本",
+        "GitHub Copilot",
+        "Meta",
+        "安全漏洞",
+        "行业挑战"
       ],
       "hot_score": 85,
-      "id": "r005",
-      "title": "颠覆传统交互！OpenAI现场演示无App手机，所有界面全靠AI实时生成",
-      "link": "https://www.chinaz.com/ainews/28556.shtml",
+      "id": "r004",
+      "title": "Ars Technica June 2026: AI costs, GitHub Copilot pricing, Meta AI chatbot hacked",
+      "link": "https://arstechnica.com/2026/06/",
       "sources": [
-        "站长之家"
+        "Ars Technica"
       ],
-      "published": "2026-06-02T14:51:05.378785+00:00",
+      "published": "2026-06-02T15:02:59.757988+00:00",
       "authority_weight": 20
     },
     {
-      "title_cn": "软银狂砸750亿欧元！联手OpenAI在法国建欧洲最大AI算力中心",
-      "summary_cn": "软银集团宣布投资750亿欧元，与OpenAI合作在法国建设超级算力中心，这将是欧洲历史上最大的AI基础设施投资。项目旨在支持大规模AI模型训练与推理，预计将带动欧洲AI产业生态发展。此举也标志着软银在AI领域的战略重心从投资转向实体基建。",
+      "title_cn": "VAST斩获近2亿美元A轮系列融资，同步推出世界模型",
+      "summary_cn": "AI初创公司VAST宣布完成近2亿美元的A轮系列融资，投资方包括多家顶级风投机构。同时，VAST推出了其自主研发的世界模型，该模型能够模拟物理环境和复杂交互，为机器人、自动驾驶和游戏领域提供强大支持。这一融资和产品发布使其成为AI赛道的新星。",
       "tags": [
-        "软银",
-        "OpenAI",
-        "算力中心",
-        "欧洲AI",
-        "投资"
+        "VAST",
+        "融资",
+        "世界模型",
+        "AI",
+        "初创公司"
+      ],
+      "hot_score": 82,
+      "id": "r005",
+      "title": "VAST斩获近2亿美元A轮系列融资，同步推出世界模型",
+      "link": "https://36kr.com/p/3834111984363401",
+      "sources": [
+        "36氪"
+      ],
+      "published": "2026-06-02T15:02:59.757988+00:00",
+      "authority_weight": 20
+    },
+    {
+      "title_cn": "英伟达推出全球首款全开源全模态物理AI大模型Cosmos 3",
+      "summary_cn": "英伟达发布了全球首款全开源、全模态的物理AI大模型Cosmos 3，该模型能够同时处理文本、图像、视频和物理仿真数据。Cosmos 3的推出旨在推动机器人、自动驾驶和工业仿真领域的发展，其开源特性将吸引全球开发者共同参与优化。",
+      "tags": [
+        "英伟达",
+        "Cosmos 3",
+        "开源",
+        "物理AI",
+        "多模态"
       ],
       "hot_score": 78,
       "id": "r006",
-      "title": "狂砸750亿欧元！软银欧洲史上最大AI投资落地，联手OpenAI在法建立超级算力中心",
-      "link": "https://www.aibase.com/zh/news/28495",
+      "title": "英伟达推出全球首款全开源全模态物理AI大模型Cosmos 3",
+      "link": "https://m.ithome.com/html/958103.htm",
       "sources": [
-        "AIbase"
+        "IT之家"
       ],
-      "published": "2026-06-02T14:51:05.378785+00:00",
+      "published": "2026-06-02T15:02:59.757988+00:00",
       "authority_weight": 20
     },
     {
-      "title_cn": "O'Reilly发布2026年6月技术趋势雷达：AI安全与自主系统成焦点",
-      "summary_cn": "知名技术媒体O'Reilly发布2026年6月技术趋势报告，指出AI安全、自主系统、边缘计算和生成式AI治理成为未来半年关键方向。报告强调，随着AI代理普及，可解释性和鲁棒性需求激增，同时低代码平台与AI融合将加速企业数字化转型。",
+      "title_cn": "O'Reilly 2026年6月趋势报告：AI与数据科学前沿技术展望",
+      "summary_cn": "O'Reilly发布了2026年6月的技术趋势报告，重点关注AI与数据科学领域的最新动态。报告指出，边缘AI、联邦学习和可解释AI将成为未来热点，同时强调了AI在医疗、金融和制造业的落地应用。此外，报告还分析了AI人才需求和技能转型的趋势。",
       "tags": [
         "O'Reilly",
-        "技术趋势",
-        "AI安全",
-        "自主系统"
+        "趋势报告",
+        "AI",
+        "数据科学",
+        "技术前沿"
       ],
-      "hot_score": 65,
+      "hot_score": 75,
       "id": "r007",
-      "title": "Radar Trends to Watch: June 2026 — O'Reilly",
+      "title": "Radar Trends to Watch: June 2026",
       "link": "https://www.oreilly.com/radar/radar-trends-to-watch-june-2026/",
       "sources": [
         "O'Reilly"
       ],
-      "published": "2026-06-02T14:51:05.378785+00:00",
+      "published": "2026-06-02T15:02:59.757988+00:00",
       "authority_weight": 20
     },
     {
-      "title_cn": "OpenAI终于下场做机器人：ChatGPT的下一站是现实世界",
-      "summary_cn": "OpenAI正式宣布进入机器人领域，计划将ChatGPT的对话能力与物理世界交互结合。新项目旨在开发能理解环境、执行任务的通用机器人，而非仅限聊天。此举被解读为AI从虚拟助手向实体服务转型的关键一步，但面临硬件成本与安全挑战。",
+      "title_cn": "OpenAI终于下场做机器人，ChatGPT下一站是现实世界",
+      "summary_cn": "OpenAI正式宣布进军机器人领域，计划将ChatGPT的AI能力集成到物理机器人中，实现从虚拟对话到现实交互的跨越。该项目旨在开发能够理解自然语言并执行复杂任务的机器人，应用于家庭服务、物流和制造业。这标志着OpenAI从软件向硬件的战略扩展。",
       "tags": [
         "OpenAI",
         "机器人",
         "ChatGPT",
-        "现实世界AI"
+        "现实世界",
+        "AI应用"
       ],
       "hot_score": 72,
       "id": "r008",
-      "title": "OpenAI终于下场做机器人，ChatGPT的下一站不是聊天，而是现实世界",
+      "title": "OpenAI终于下场做机器人，ChatGPT下一站是现实世界",
       "link": "https://www.cnblogs.com/dqtx33/p/20255492",
       "sources": [
         "博客园"
       ],
-      "published": "2026-06-02T14:51:05.378785+00:00",
+      "published": "2026-06-02T15:02:59.757988+00:00",
       "authority_weight": 20
     },
     {
-      "title_cn": "英伟达RTX Spark驱动Windows AI突破：本地推理性能飙升",
-      "summary_cn": "英伟达推出RTX Spark技术，专为Windows平台优化AI推理性能。该技术利用GPU加速，使本地运行大模型成为可能，延迟降低50%以上。这一突破将推动AI应用从云端向边缘设备迁移，尤其利好游戏、设计和生产力工具。",
+      "title_cn": "这届10后20后已不想跟真人聊天？AI原住民时代来临",
+      "summary_cn": "最新调查显示，出生于2010年后的10后和20后群体更倾向于与AI聊天机器人互动，而非真人社交。这些AI原住民习惯于通过智能助手获取信息、娱乐和情感支持，导致传统社交方式逐渐边缘化。专家警告这可能会影响儿童社交技能发展，但也承认AI提供了新的沟通模式。",
+      "tags": [
+        "AI原住民",
+        "10后",
+        "20后",
+        "社交",
+        "聊天机器人"
+      ],
+      "hot_score": 68,
+      "id": "r009",
+      "title": "这届10后20后，已经不想跟真人聊天了？AI原住民时代来临",
+      "link": "https://www.36kr.com/p/3833957693515398",
+      "sources": [
+        "36氪"
+      ],
+      "published": "2026-06-02T15:02:59.757988+00:00",
+      "authority_weight": 20
+    },
+    {
+      "title_cn": "英伟达和台积电将AI引入晶圆厂，推动半导体设计与制造发展",
+      "summary_cn": "英伟达与台积电宣布合作，将AI技术引入晶圆厂的生产流程，用于优化芯片设计、检测缺陷和提升良率。通过AI驱动的自动化系统，半导体制造效率预计将提升30%以上。这一合作有望加速下一代芯片的研发，并降低生产成本。",
       "tags": [
         "英伟达",
-        "RTX Spark",
-        "Windows AI",
-        "本地推理"
+        "台积电",
+        "AI",
+        "晶圆厂",
+        "半导体"
       ],
-      "hot_score": 60,
-      "id": "r009",
-      "title": "NVIDIA RTX Spark Powers Windows AI Breakthrough",
-      "link": "https://blockchain.news/ainews/nvidia-rtx-spark-powers-windows-ai-breakthrough",
-      "sources": [
-        "Blockchain News"
-      ],
-      "published": "2026-06-02T14:51:05.378785+00:00",
-      "authority_weight": 20
-    },
-    {
-      "title_cn": "2026年6月1日AI日报：多模态模型竞赛白热化，监管新规出台",
-      "summary_cn": "The Neuron发布6月1日AI行业日报，总结当日重大事件：多模态模型竞赛进入新阶段，多家公司发布图像-文本联合生成系统；同时，欧盟通过AI责任法案，要求高风险系统提供可追溯性。此外，开源社区推出新一代推理模型，性能接近闭源方案。",
-      "tags": [
-        "AI日报",
-        "多模态",
-        "监管",
-        "开源模型"
-      ],
-      "hot_score": 55,
+      "hot_score": 65,
       "id": "r010",
-      "title": "Everything That Happened in AI Today — Monday, June 1, 2026",
-      "link": "https://www.theneuron.ai/explainer-articles/everything-that-happened-in-ai-today-monday-june-1-2026/",
+      "title": "英伟达和台积电将AI引入晶圆厂，推动半导体设计与制造发展",
+      "link": "https://m.ithome.com/html/958109.htm",
       "sources": [
-        "The Neuron"
+        "IT之家"
       ],
-      "published": "2026-06-02T14:51:05.378785+00:00",
+      "published": "2026-06-02T15:02:59.757988+00:00",
       "authority_weight": 20
     }
   ]
