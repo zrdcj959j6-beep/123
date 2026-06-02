@@ -887,7 +887,7 @@ const NEWS_JSON  = 'news.json';
 const HOT_JSON   = 'hot_news.json';
 const LEARNING_JSON = 'learning.json';
 const FETCH_TIMEOUT = 12000;
-const AUTO_REFRESH_SEC = 300; // 5 分钟自动刷新
+const AUTO_REFRESH_SEC = 180; // 3 分钟自动刷新
 
 // ═══════════════════════════════════════════════
 //  全局状态
@@ -1084,7 +1084,7 @@ function renderTicker(newsArr) {
   // 双份以实现无缝循环
   var html = items.map(function(n, i) {
     var dotCls = n.hot_score >= 75 ? 'hot' : (n.hot_score >= 50 ? 'new' : 'normal');
-    return '<span class="ticker-item" onclick="window.open(\'' + esc(n.link) + '\',\'_blank\')" title="' + esc(n.title_cn || n.title) + '">' +
+    return '<span class="ticker-item" data-link="' + esc(n.link) + '" style="cursor:pointer" title="' + esc(n.title_cn || n.title) + '">' +
       '<span class="ticker-dot ' + dotCls + '"></span>' +
       esc((n.title_cn || n.title).substring(0, 35)) +
       '</span>';
@@ -1100,8 +1100,8 @@ function renderHero(topNews) {
   if (!topNews || !topNews.length) { area.innerHTML = ''; return; }
   area.innerHTML = '<div class="hero-grid">' + topNews.map(function(n, i) {
     var cls = hotBadgeClass(n.hot_score);
-    return '<article class="hero-card" style="animation:fadeInUp 0.4s ' + (i*0.1) + 's ease backwards" ' +
-      'onclick="window.open(\'' + esc(n.link) + '\',\'_blank\')">' +
+    return '<article class="hero-card" style="animation:fadeInUp 0.4s ' + (i*0.1) + 's ease backwards;cursor:pointer" ' +
+      'data-link="' + esc(n.link) + '">' +
       '<div class="hc-header">' +
         '<div class="hc-title">' + esc(n.title_cn || n.title) + '</div>' +
         '<div class="hot-badge-lg ' + cls + '"><span>' + (n.hot_score || 0) + '</span><span class="hbl-label">热度</span></div>' +
@@ -1125,8 +1125,8 @@ function renderNewsGrid(restNews) {
   var titleHTML = '<div class="section-title">📰 更多资讯 <span style="font-weight:400;font-size:12px;color:var(--text-muted)">(' + restNews.length + ' 条)</span></div>';
   area.innerHTML = titleHTML + '<div class="news-grid">' + restNews.map(function(n, i) {
     var cls = hotBadgeClass(n.hot_score);
-    return '<article class="news-card" style="animation-delay:' + (i*0.05) + 's" ' +
-      'onclick="window.open(\'' + esc(n.link) + '\',\'_blank\')">' +
+    return '<article class="news-card" style="animation-delay:' + (i*0.05) + 's;cursor:pointer" ' +
+      'data-link="' + esc(n.link) + '">' +
       '<div class="nc-header">' +
         '<div class="nc-title">' + esc(n.title_cn || n.title) + '</div>' +
         '<div class="hot-badge-sm ' + cls + '"><span>' + (n.hot_score || 0) + '</span><span class="hbs-label">热度</span></div>' +
@@ -1186,19 +1186,21 @@ function renderLearning(data, isDemo) {
 //  自动刷新倒计时
 // ═══════════════════════════════════════════════
 function startRefreshTimer() {
+  if (countdownInterval) clearInterval(countdownInterval);
   var remaining = AUTO_REFRESH_SEC;
   var info = document.getElementById('refreshInfo');
   function tick() {
     if (remaining <= 0) {
+      clearInterval(countdownInterval);
+      showToast('🔄 自动刷新中...');
       loadData(true);
       return;
     }
     var m = Math.floor(remaining / 60);
     var s = remaining % 60;
-    info.textContent = m + '分' + (s < 10 ? '0' : '') + s + '秒后自动刷新';
+    info.textContent = m + '分' + (s < 10 ? '0' : '') + s + '秒后刷新';
     remaining--;
   }
-  if (countdownInterval) clearInterval(countdownInterval);
   tick();
   countdownInterval = setInterval(tick, 1000);
 }
@@ -1255,7 +1257,7 @@ function renderDailyCards(items) {
   grid.innerHTML = filtered.map(function(n, i) {
     var moodEmoji = MOOD_EMOJI[n.mood] || '🍉';
     var tagsHTML = (n.tags || []).slice(0, 3).map(function(t) { return '<span class="tag">' + esc(t) + '</span>'; }).join('');
-    return '<article class="daily-card" style="animation-delay:' + (i*0.04) + 's" onclick="window.open(\'' + esc(n.link) + '\',\'_blank\')">' +
+    return '<article class="daily-card" style="animation-delay:' + (i*0.04) + 's;cursor:pointer" data-link="' + esc(n.link) + '">' +
       '<span class="dc-mood">' + moodEmoji + '</span>' +
       '<span class="dc-cat ' + esc(n.category) + '">' + esc(n.category) + '</span>' +
       '<div class="dc-title">' + esc(n.title_cn) + '</div>' +
