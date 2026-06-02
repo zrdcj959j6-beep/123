@@ -37,6 +37,70 @@
     overflow-x: hidden;
   }
 
+
+  /* ══════ Search Box ══════ */
+  .search-wrap {
+    max-width: var(--width);
+    margin: 0 auto;
+    padding: 8px 24px;
+  }
+  .search-box {
+    display: flex;
+    align-items: center;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 24px;
+    padding: 6px 16px;
+    transition: all 0.25s;
+    gap: 8px;
+  }
+  .search-box:focus-within {
+    border-color: var(--accent);
+    box-shadow: 0 0 0 3px rgba(88,166,255,0.1);
+  }
+  .search-box .sb-icon {
+    font-size: 14px;
+    opacity: 0.5;
+    flex-shrink: 0;
+  }
+  .search-box input {
+    flex: 1;
+    border: none;
+    background: none;
+    color: var(--text);
+    font-size: 14px;
+    font-family: inherit;
+    outline: none;
+    padding: 6px 0;
+  }
+  .search-box input::placeholder { color: var(--text-muted); }
+  .search-box .sb-clear {
+    display: none;
+    background: var(--border);
+    border: none;
+    color: var(--text-secondary);
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 14px;
+    line-height: 1;
+    transition: all 0.2s;
+    flex-shrink: 0;
+  }
+  .search-box .sb-clear.visible { display: flex; align-items: center; justify-content: center; }
+  .search-box .sb-clear:hover { background: var(--text-muted); color: #fff; }
+  .search-highlight {
+    background: rgba(255,215,0,0.25);
+    border-radius: 2px;
+    padding: 1px 0;
+  }
+  .search-no-results {
+    text-align: center;
+    padding: 40px 20px;
+    color: var(--text-muted);
+  }
+
   /* ══════ Ticker Bar ══════ */
   .ticker-bar {
     background: linear-gradient(90deg, #1a1f2e 0%, #162032 100%);
@@ -703,6 +767,13 @@
       </button>
     </div>
   </div>
+  <div class="search-wrap">
+    <div class="search-box">
+      <span class="sb-icon">🔍</span>
+      <input type="text" id="searchInput" placeholder="搜索新闻、吃瓜、学习内容..." oninput="doSearch(this.value)">
+      <button class="sb-clear" id="searchClear" onclick="clearSearch()">✕</button>
+    </div>
+  </div>
   <nav class="tabs">
     <button class="tab-btn active" onclick="switchTab('news')">🔥 热点速递</button>
     <button class="tab-btn" onclick="switchTab('daily')">🍉 吃瓜日常</button>
@@ -839,8 +910,98 @@ function showToast(msg) {
 function fetchWithTimeout(url, timeout) {
   var ctrl = new AbortController();
   var timer = setTimeout(function(){ ctrl.abort(); }, timeout || FETCH_TIMEOUT);
-  return fetch(url, { signal: ctrl.signal }).finally(function(){ clearTimeout(timer); });
+  // Cache-busting: add timestamp to avoid stale cache
+  var sep = url.indexOf('?') >= 0 ? '&' : '?';
+  var busted = url + sep + '_t=' + Date.now();
+  return fetch(busted, { signal: ctrl.signal, cache: 'no-store' }).finally(function(){ clearTimeout(timer); });
 }
+
+
+// ═══════════════════════════════════════════════
+//  搜索功能
+// ═══════════════════════════════════════════════
+let searchQuery = '';
+let currentActiveTab = 'news';
+
+function doSearch(q) {
+  searchQuery = q.trim().toLowerCase();
+  var clearBtn = document.getElementById('searchClear');
+  if (searchQuery) {
+    clearBtn.classList.add('visible');
+  } else {
+    clearBtn.classList.remove('visible');
+  }
+  applySearchFilter();
+}
+
+function clearSearch() {
+  document.getElementById('searchInput').value = '';
+  searchQuery = '';
+  document.getElementById('searchClear').classList.remove('visible');
+  applySearchFilter();
+  document.getElementById('searchInput').focus();
+}
+
+function applySearchFilter() {
+  // Determine current active tab
+  if (document.getElementById('tab-news').classList.contains('active')) {
+    currentActiveTab = 'news';
+  } else if (document.getElementById('tab-daily').classList.contains('active')) {
+    currentActiveTab = 'daily';
+  } else {
+    currentActiveTab = 'learning';
+  }
+
+  if (!searchQuery) {
+    // No search - restore normal view
+    if (currentActiveTab === 'news') {
+      var sorted = allNews.slice().sort(function(a, b) { return (b.hot_score || 0) - (a.hot_score || 0); });
+      renderHero(sorted.slice(0, 3));
+      renderNewsGrid(sorted.slice(3));
+      renderStats(sorted, null, isUsingDemo);
+    } else if (currentActiveTab === 'daily') {
+      renderDailyCards(allDailyItems);
+    }
+    return;
+  }
+
+  if (currentActiveTab === 'news') {
+    var matched = allNews.filter(function(n) {
+      var hay = ((n.title_cn || '') + ' ' + (n.title || '') + ' ' + (n.summary_cn || '') + ' ' + (n.tags || []).join(' ')).toLowerCase();
+      return hay.indexOf(searchQuery) >= 0;
+    });
+    if (matched.length) {
+      var sorted = matched.slice().sort(function(a, b) { return (b.hot_score || 0) - (a.hot_score || 0); });
+      renderHero(sorted.slice(0, Math.min(2, sorted.length)));
+      renderNewsGrid(sorted.slice(Math.min(2, sorted.length)));
+      renderStats(matched, null, false);
+    } else {
+      document.getElementById('heroArea').innerHTML = '';
+      document.getElementById('newsGridArea').innerHTML = '<div class="search-no-results"><p style="font-size:24px">🔍</p><p>没有找到包含 "<strong>' + esc(searchQuery) + '</strong>" 的新闻</p><p style="font-size:12px;color:var(--text-muted)">试试其他关键词？</p></div>';
+      document.getElementById('statsBar').innerHTML = '<span class="stat-item">📰 搜索: <span class="stat-val">' + esc(searchQuery) + '</span></span><span class="stat-item">找到 0 条</span>';
+    }
+  } else if (currentActiveTab === 'daily') {
+    var matched = allDailyItems.filter(function(n) {
+      var hay = ((n.title_cn || '') + ' ' + (n.summary_cn || '') + ' ' + (n.category || '') + ' ' + (n.tags || []).join(' ')).toLowerCase();
+      return hay.indexOf(searchQuery) >= 0;
+    });
+    if (matched.length) {
+      renderDailyCards(matched);
+    } else {
+      document.getElementById('dailyGrid').innerHTML = '<div class="search-no-results"><p style="font-size:24px">🔍</p><p>没有找到包含 "<strong>' + esc(searchQuery) + '</strong>" 的内容</p><p style="font-size:12px;color:var(--text-muted)">试试其他关键词？</p></div>';
+    }
+  }
+}
+
+// Override switchTab to also reset search
+var _originalSwitchTab = switchTab;
+switchTab = function(tab) {
+  _originalSwitchTab(tab);
+  currentActiveTab = tab;
+  if (searchQuery) {
+    applySearchFilter();
+  }
+};
 
 // ═══════════════════════════════════════════════
 //  Tab 切换
