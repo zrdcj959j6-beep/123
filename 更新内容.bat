@@ -9,7 +9,7 @@ echo ============================================
 echo.
 
 REM 设置 DeepSeek API Key
-set OPENAI_API_KEY=sk-9682ed34cb5245fbb7ab5c0fd2ecab6e
+set OPENAI_API_KEY=sk-7f243b7fdbb1451db765364db7ecc34c
 
 echo [1/2] DeepSeek 生成最新内容...
 python gen_all.py

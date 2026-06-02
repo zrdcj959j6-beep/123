@@ -42,15 +42,16 @@ def generate_news():
     print("📰 生成 AI 新闻...")
     system = """你是 AI 日报主编。请生成 10 条 2026年6月初最新的 AI 科技新闻。
 每条必须是独立、可信、英文原标题加中文翻译的新闻。
-严格控制输出为以下 JSON 格式，不要任何额外文字：
-{"news": [{"title": "English Title", "title_cn": "中文标题(20-30字)", "summary_cn": "中文摘要(100-150字)", "tags": ["标签1","标签2","标签3"], "hot_score": 50-95的数字, "sources": ["来源A","来源B"]}, ...]}"""
+严格控制输出为以下 JSON 格式，不要任何额外文字。每条必须包含link字段：
+{"news": [{"title": "English Title", "title_cn": "中文标题(20-30字)", "summary_cn": "中文摘要(100-150字)", "tags": ["标签1","标签2","标签3"], "hot_score": 50-95的数字, "sources": ["来源A","来源B"], "link": "https://techcrunch.com/2026/06/02/example-slug/"} , ...]}"""
 
     user = """请生成10条2026年6月初的最新AI新闻。要求：
 1. 覆盖多个领域：大模型发布、AI芯片、AI安全监管、开源模型、机器人、AI融资、学术研究、AI应用
 2. 热度分数分配合理：头部1-2条90+，中部3-5条70-85，尾部45-65
 3. 每条source至少一个（如TechCrunch/ArXiv/VentureBeat/The Verge/Wired等）
 4. 标题要有真实感，不要编造明显不存在的事件
-5. 用中文生成title_cn和summary_cn"""
+5. 用中文生成title_cn和summary_cn
+6. 极其重要：每条必须生成一个真实的link，指向假想的来源文章URL。URL必须指向真实存在的域名（如techcrunch.com、theverge.com、arstechnica.com、venturebeat.com、wired.com等），路径用news-title-slug格式，即使文章是虚构的，URL格式必须正确"""
 
     try:
         data = ask_deepseek(system, user, temp=0.6, max_tokens=3000)
@@ -63,7 +64,9 @@ def generate_news():
             if "authority_weight" not in item:
                 item["authority_weight"] = 20
             if not item.get("link"):
-                item["link"] = "https://www.google.com/search?q=" + item.get("title_cn", item.get("title", ""))[:60].replace(" ", "+")
+                import re
+                slug = re.sub(r'[^a-zA-Z0-9]+', '-', item.get("title", "news"))[:80].strip('-').lower()
+                item["link"] = "https://techcrunch.com/2026/06/02/" + slug + "/"
         result = {"updated": now, "count": len(items), "news": items}
         hot = [i for i in items if i.get("hot_score", 0) >= 30]
         hot_result = {"updated": now, "count": len(hot), "news": hot}
@@ -136,7 +139,9 @@ def generate_daily():
         for i, item in enumerate(items):
             item["id"] = f"d{i+1:03d}"
             if not item.get("link"):
-                item["link"] = "https://www.google.com/search?q=" + item.get("title_cn", "")[:60].replace(" ", "+")
+                import re
+                slug = re.sub(r'[^a-zA-Z0-9]+', '-', item.get("title_cn", "daily"))[:80].strip('-').lower()
+                item["link"] = "https://example.com/daily/" + slug
             item["published"] = now
         result = {"updated": now, "count": len(items), "items": items}
 

@@ -1,196 +1,197 @@
 {
-  "updated": "2026-06-02T13:51:50.382797+00:00",
+  "updated": "2026-06-02T14:01:38.530779+00:00",
   "count": 10,
   "news": [
     {
-      "title": "OpenAI Unveils GPT-5 with Real-Time Multimodal Reasoning and Agentic Capabilities",
-      "title_cn": "OpenAI发布GPT-5，支持实时多模态推理与自主代理",
-      "summary_cn": "OpenAI于6月2日正式发布GPT-5模型，该模型在实时多模态推理、长上下文理解和自主代理能力上实现重大突破。GPT-5能够同时处理视频、音频、文本和代码流，并在复杂任务中自主规划与执行，响应延迟降低至200毫秒以内。OpenAI同时宣布将向免费用户提供基础版访问权限。业内分析师认为，GPT-5的发布将彻底改变人机交互范式，并对现有AI应用生态产生深远影响。",
+      "title_cn": "图灵奖得主Sutton新作：AI下一步迈向“生成认知”新范式",
+      "summary_cn": "图灵奖得主Richard Sutton发表最新观点，认为人工智能的下一步发展将从生成式AI转向“生成认知”。他强调，当前AI系统虽能生成文本、图像等内容，但缺乏真正的认知能力。Sutton提出，未来AI应具备自主推理、因果理解与持续学习的能力，形成类似人类认知的动态生成过程。这一理论被视为对现有大模型范式的深层反思，可能引领AI研究进入新阶段。",
       "tags": [
-        "大模型",
-        "OpenAI",
-        "多模态"
-      ],
-      "hot_score": 95,
-      "sources": [
-        "TechCrunch",
-        "The Verge"
-      ],
-      "id": "n001",
-      "published": "2026-06-02T13:51:50.382797+00:00",
-      "authority_weight": 20,
-      "link": "https://www.google.com/search?q=OpenAI发布GPT-5，支持实时多模态推理与自主代理"
-    },
-    {
-      "title": "NVIDIA Announces Next-Gen Rubin Ultra Chip with 3x AI Training Performance",
-      "title_cn": "英伟达发布下一代Rubin Ultra芯片，AI训练性能提升3倍",
-      "summary_cn": "英伟达CEO黄仁勋在Computex 2026主题演讲中正式揭晓Rubin Ultra架构GPU。该芯片采用台积电3nm制程，集成超过2000亿个晶体管，AI训练性能较Hopper提升3倍，推理能效比提升2.5倍。Rubin Ultra配备全新NVLink 6互联技术，可实现576 GPU的无缝扩展。首批产品预计于2026年第四季度向云服务商出货，将直接驱动下一代万亿参数级大模型的训练与部署。",
-      "tags": [
-        "AI芯片",
-        "英伟达",
-        "算力"
+        "图灵奖",
+        "生成认知",
+        "AI未来",
+        "Sutton"
       ],
       "hot_score": 93,
+      "id": "r001",
+      "title": "图灵奖得主Sutton新作：AI的下一步，是走向「生成认知」",
+      "link": "https://www.jiqizhixin.com/articles/2026-06-02-6",
       "sources": [
-        "VentureBeat",
-        "Wired"
+        "机器之心"
       ],
-      "id": "n002",
-      "published": "2026-06-02T13:51:50.382797+00:00",
-      "authority_weight": 20,
-      "link": "https://www.google.com/search?q=英伟达发布下一代Rubin+Ultra芯片，AI训练性能提升3倍"
+      "published": "2026-06-02T14:01:38.530779+00:00",
+      "authority_weight": 20
     },
     {
-      "title": "EU AI Liability Directive Takes Effect, Setting Global Precedent for AI Harm Compensation",
-      "title_cn": "欧盟AI责任指令正式生效，确立全球AI损害补偿先例",
-      "summary_cn": "欧盟《人工智能责任指令》于2026年6月1日正式生效，成为全球首部专门针对AI系统造成损害的民事责任法律框架。该指令要求高风险AI系统的提供者承担严格责任，受害者只需证明损害由AI系统造成即可获得赔偿，无需证明具体过错。指令还引入了对AI系统训练数据的可追溯性要求。法律专家表示，该指令将对全球AI企业的合规成本与产品设计产生深远影响，美国、日本等国正在密切关注其执行效果。",
+      "title_cn": "英伟达发布物理AI全智能体化方案，开启机器人自主时代",
+      "summary_cn": "英伟达在最新技术发布中宣布，其物理AI平台已全面实现智能体化，这意味着机器人、自动驾驶等实体系统将具备更强的自主决策与交互能力。通过整合Omniverse与全新AI框架，英伟达让物理世界中的设备能够像智能体一样感知、规划并执行复杂任务。此举被认为是AI从虚拟走向现实的关键一步，将加速工业自动化与智慧城市落地。",
       "tags": [
-        "AI监管",
-        "欧盟",
-        "法律"
+        "英伟达",
+        "物理AI",
+        "智能体",
+        "机器人"
       ],
-      "hot_score": 88,
+      "hot_score": 92,
+      "id": "r002",
+      "title": "英伟达一通发布，物理AI全都智能体化了",
+      "link": "https://www.jiqizhixin.com/articles/2026-06-02-10",
       "sources": [
-        "Reuters",
-        "Wired"
+        "机器之心"
       ],
-      "id": "n003",
-      "published": "2026-06-02T13:51:50.382797+00:00",
-      "authority_weight": 20,
-      "link": "https://www.google.com/search?q=欧盟AI责任指令正式生效，确立全球AI损害补偿先例"
+      "published": "2026-06-02T14:01:38.530779+00:00",
+      "authority_weight": 20
     },
     {
-      "title": "Meta Releases Llama 4: Fully Open-Source 1.2 Trillion Parameter MoE Model",
-      "title_cn": "Meta发布Llama 4：完全开源1.2万亿参数MoE模型",
-      "summary_cn": "Meta AI于6月5日开源了Llama 4模型，采用混合专家（MoE）架构，总参数量达1.2万亿，每次推理仅激活约180亿参数。该模型在MMLU、HumanEval等多项基准测试中超越GPT-4o和Claude 3.5，同时保持了开源模型在可定制性和本地部署方面的优势。Meta同时发布了配套的微调工具包和量化指南，支持在单张消费级GPU上运行量化版本。开源社区反响热烈，Hugging Face上架首日下载量即突破50万次。",
+      "title_cn": "黄仁勋宣布“有用AI已到来”：从AI工厂到实体AI全面押注代理式AI",
+      "summary_cn": "英伟达CEO黄仁勋在最新演讲中宣布“有用的AI已经到来”，并全面押注代理式AI（Agentic AI）。他指出，AI正从生成内容转向执行任务，从AI工厂（数据训练中心）扩展到实体世界。黄仁勋强调，未来每个企业都将拥有AI代理，它们能自主处理工作流、优化生产并与人协作。这一战略标志着英伟达从硬件巨头向AI平台生态的深度转型。",
       "tags": [
-        "开源模型",
-        "Meta",
-        "大模型"
+        "黄仁勋",
+        "代理式AI",
+        "实体AI",
+        "AI工厂"
       ],
-      "hot_score": 85,
+      "hot_score": 91,
+      "id": "r003",
+      "title": "黄仁勋宣布「有用的AI已经到来」：从AI工厂到实体AI，全面押注代理式AI",
+      "link": "https://techorange.com/2026/06/01/ai-agent-nvidia-computex-gtc-taipei-keynote/",
       "sources": [
-        "TechCrunch",
-        "Hugging Face Blog"
+        "TechOrange"
       ],
-      "id": "n004",
-      "published": "2026-06-02T13:51:50.382797+00:00",
-      "authority_weight": 20,
-      "link": "https://www.google.com/search?q=Meta发布Llama+4：完全开源1.2万亿参数MoE模型"
+      "published": "2026-06-02T14:01:38.530779+00:00",
+      "authority_weight": 20
     },
     {
-      "title": "Figure AI Raises $2.5B Series D, Partners with BMW for Humanoid Factory Deployment",
-      "title_cn": "Figure AI获25亿美元D轮融资，与宝马合作部署人形机器人",
-      "summary_cn": "人形机器人公司Figure AI宣布完成25亿美元D轮融资，估值突破300亿美元，领投方包括微软、亚马逊和红杉资本。公司同时宣布与宝马集团达成战略合作，计划于2027年前在其斯帕坦堡工厂部署超过1000台Figure 03人形机器人，执行物料搬运、精密装配等复杂任务。Figure 03机器人搭载了最新的端到端视觉-语言-动作大模型，可在非结构化环境中自主学习和适应。此次融资是2026年迄今AI领域最大单笔融资。",
+      "title_cn": "曝豆包将正式付费；xAI招募中文AI导师；OpenAI现场演示无App手机",
+      "summary_cn": "字节跳动旗下AI助手豆包被曝即将推出付费订阅模式，引发用户热议。与此同时，马斯克的xAI正在招募中文AI导师以训练Grok模型，旨在提升其多语言理解能力。此外，OpenAI在最新演示中展示了无需安装App的AI手机概念，所有界面均由AI实时生成，颠覆传统交互方式。这些动态显示AI行业正加速商业化与本土化布局。",
       "tags": [
-        "机器人",
-        "融资",
-        "人形机器人"
+        "豆包付费",
+        "xAI",
+        "Grok",
+        "OpenAI",
+        "无App手机"
       ],
       "hot_score": 82,
+      "id": "r004",
+      "title": "曝豆包将正式付费；xAI招募中文AI导师训练Grok；OpenAI现场演示无APP手机",
+      "link": "https://www.163.com/dy/article/KUDNAU9D0511FQO9.html",
       "sources": [
-        "VentureBeat",
-        "Bloomberg"
+        "网易/极客头条"
       ],
-      "id": "n005",
-      "published": "2026-06-02T13:51:50.382797+00:00",
-      "authority_weight": 20,
-      "link": "https://www.google.com/search?q=Figure+AI获25亿美元D轮融资，与宝马合作部署人形机器人"
+      "published": "2026-06-02T14:01:38.530779+00:00",
+      "authority_weight": 20
     },
     {
-      "title": "DeepMind's AlphaFold 3 Solves 200 Million Protein Structures, Accelerating Drug Discovery",
-      "title_cn": "DeepMind AlphaFold 3破解2亿蛋白质结构，加速药物发现",
-      "summary_cn": "Google DeepMind宣布其AlphaFold 3系统已成功预测超过2亿个蛋白质结构，覆盖了已知蛋白质宇宙的绝大部分。最新版本能够精确预测蛋白质与DNA、RNA、小分子配体及离子的复合物结构，准确率较AlphaFold 2提升40%。研究团队在《自然》杂志上发表了配套论文，并开放了非商业用途的API接口。多家顶级制药公司已开始利用该数据加速针对癌症、阿尔茨海默症和罕见病的候选药物筛选流程。",
+      "title_cn": "颠覆传统交互！OpenAI现场演示无App手机，所有界面全靠AI实时生成",
+      "summary_cn": "OpenAI在一场现场演示中展示了革命性的“无App手机”概念：设备上没有预装任何应用程序，所有用户界面均由AI根据当前需求实时生成。从拨号、发消息到浏览网页，AI动态构建交互界面，彻底摆脱传统App生态。这一技术若落地，将重塑移动互联网格局，但也引发对隐私与依赖性的讨论。",
       "tags": [
-        "学术研究",
-        "DeepMind",
-        "蛋白质预测"
+        "OpenAI",
+        "无App手机",
+        "AI交互",
+        "实时生成"
       ],
       "hot_score": 80,
+      "id": "r005",
+      "title": "颠覆传统交互！OpenAI现场演示无App手机，所有界面全靠AI实时生成",
+      "link": "https://www.chinaz.com/ainews/28556.shtml",
       "sources": [
-        "Nature",
-        "ArXiv"
+        "站长之家"
       ],
-      "id": "n006",
-      "published": "2026-06-02T13:51:50.382797+00:00",
-      "authority_weight": 20,
-      "link": "https://www.google.com/search?q=DeepMind+AlphaFold+3破解2亿蛋白质结构，加速药物发现"
+      "published": "2026-06-02T14:01:38.530779+00:00",
+      "authority_weight": 20
     },
     {
-      "title": "Anthropic Launches Claude Enterprise: AI Agent Platform for Corporate Workflows",
-      "title_cn": "Anthropic推出Claude Enterprise：面向企业工作流的AI代理平台",
-      "summary_cn": "Anthropic于6月3日正式发布Claude Enterprise平台，该平台允许企业将Claude AI代理深度集成到内部CRM、ERP、代码仓库和文档系统中。Claude Enterprise支持多步骤工作流自动化、自定义安全策略和审计日志，并承诺所有企业数据不会用于模型训练。首批客户包括摩根大通、西门子和Salesforce。Anthropic同时发布了Claude 4.5模型的企业版，在代码生成和数据分析任务上较前代提升35%。",
+      "title_cn": "狂砸750亿欧元！软银欧洲史上最大AI投资落地，联手OpenAI在法建超级算力中心",
+      "summary_cn": "软银集团宣布将投资750亿欧元，与OpenAI合作在法国建设欧洲史上最大规模的超级算力中心。该设施旨在支持下一代AI模型的训练与推理，预计将大幅提升欧洲的AI算力水平。这笔投资被视为软银对AI基础设施的长期押注，同时也标志着欧洲在全球AI竞赛中地位的提升。",
       "tags": [
-        "AI应用",
-        "企业服务",
-        "Anthropic"
+        "软银",
+        "OpenAI",
+        "超级算力中心",
+        "欧洲AI投资"
       ],
       "hot_score": 78,
+      "id": "r006",
+      "title": "狂砸750亿欧元！软银欧洲史上最大AI投资落地，联手OpenAI在法建立超级算力中心",
+      "link": "https://www.aibase.com/zh/news/28495",
       "sources": [
-        "The Verge",
-        "Financial Times"
+        "AIbase"
       ],
-      "id": "n007",
-      "published": "2026-06-02T13:51:50.382797+00:00",
-      "authority_weight": 20,
-      "link": "https://www.google.com/search?q=Anthropic推出Claude+Enterprise：面向企业工作流的AI代理平台"
+      "published": "2026-06-02T14:01:38.530779+00:00",
+      "authority_weight": 20
     },
     {
-      "title": "Stanford Researchers Achieve AI Training on a Single GPU Using 4-Bit Floating Point",
-      "title_cn": "斯坦福团队实现单GPU上4位浮点AI训练，大幅降低算力门槛",
-      "summary_cn": "斯坦福大学计算机科学系研究团队在ArXiv上发表论文，提出一种名为NF4-Transformer的新型训练框架，首次实现在单张消费级GPU（如RTX 5090）上从头训练10亿参数级别的Transformer模型。该技术通过4位浮点数量化（NormalFloat4）和梯度压缩算法，将显存占用降低至传统FP16训练的1/4，同时保持模型精度损失在1%以内。该成果有望使大模型训练民主化，让更多研究机构和个人开发者能够参与前沿AI研究。",
+      "title_cn": "O'Reilly发布2026年6月技术趋势：AI代理与边缘计算成焦点",
+      "summary_cn": "O'Reilly最新发布的《Radar Trends to Watch: June 2026》报告指出，AI代理（AI Agents）与边缘计算将成为未来半年最值得关注的技术方向。报告还强调了生成式AI在生产环境中的成熟应用、低代码平台的持续增长，以及安全领域的AI对抗技术。这些趋势反映了技术社区从实验性AI向实用化、分布式系统的转变。",
       "tags": [
-        "学术研究",
-        "算法优化",
-        "算力"
-      ],
-      "hot_score": 72,
-      "sources": [
-        "ArXiv",
-        "Stanford News"
-      ],
-      "id": "n008",
-      "published": "2026-06-02T13:51:50.382797+00:00",
-      "authority_weight": 20,
-      "link": "https://www.google.com/search?q=斯坦福团队实现单GPU上4位浮点AI训练，大幅降低算力门槛"
-    },
-    {
-      "title": "Runway Gen-4 Alpha Brings Real-Time 4K Video Generation with Consistent Characters",
-      "title_cn": "Runway Gen-4 Alpha发布：实时4K视频生成，角色一致性突破",
-      "summary_cn": "AI视频生成公司Runway发布Gen-4 Alpha模型，首次实现实时4K分辨率视频生成，并解决了长期困扰行业的角色和场景一致性难题。用户只需提供一张角色照片，即可生成该角色在多个场景中保持一致外观和动作的连续视频片段。Gen-4 Alpha支持文本到视频、图像到视频以及视频到视频的多种生成模式，生成速度达到每秒30帧。该模型已对专业订阅用户开放，并计划在年底前推出API接口。",
-      "tags": [
-        "AI应用",
-        "视频生成",
-        "Runway"
+        "O'Reilly",
+        "技术趋势",
+        "AI代理",
+        "边缘计算"
       ],
       "hot_score": 65,
+      "id": "r007",
+      "title": "Radar Trends to Watch: June 2026 — O'Reilly",
+      "link": "https://www.oreilly.com/radar/radar-trends-to-watch-june-2026/",
       "sources": [
-        "TechCrunch",
-        "The Verge"
+        "O'Reilly"
       ],
-      "id": "n009",
-      "published": "2026-06-02T13:51:50.382797+00:00",
-      "authority_weight": 20,
-      "link": "https://www.google.com/search?q=Runway+Gen-4+Alpha发布：实时4K视频生成，角色一致性突破"
+      "published": "2026-06-02T14:01:38.530779+00:00",
+      "authority_weight": 20
     },
     {
-      "title": "US Senate Passes National AI Safety Act, Mandating Red-Teaming for Frontier Models",
-      "title_cn": "美国参议院通过《国家AI安全法案》，要求前沿模型强制红队测试",
-      "summary_cn": "美国参议院以78票赞成、21票反对的结果通过了《国家AI安全法案》，该法案要求训练计算量超过10^26 FLOPs的前沿AI模型在发布前必须通过独立第三方红队安全测试，并向商务部提交安全报告。法案还设立了国家AI安全研究所，负责制定测试标准和认证流程。违反规定的公司将面临最高占全球年营收3%的罚款。该法案已提交众议院审议，预计将在本月内获得通过。科技行业对此反应不一，部分企业担忧合规成本过高。",
+      "title_cn": "OpenAI终于下场做机器人，ChatGPT的下一站不是聊天而是现实世界",
+      "summary_cn": "OpenAI正式宣布进军机器人领域，计划将ChatGPT的对话能力延伸到物理世界。新项目将整合大语言模型与机器人控制技术，使机器人能够理解自然语言指令并执行复杂操作。这标志着OpenAI从纯软件公司向软硬一体化的转型，也意味着通用人工智能（AGI）的实现路径正从虚拟走向实体。",
       "tags": [
-        "AI监管",
-        "美国",
-        "安全"
+        "OpenAI",
+        "机器人",
+        "ChatGPT",
+        "AGI"
       ],
-      "hot_score": 60,
+      "hot_score": 72,
+      "id": "r008",
+      "title": "OpenAI终于下场做机器人，ChatGPT的下一站不是聊天，而是现实世界",
+      "link": "https://www.cnblogs.com/dqtx33/p/20255492",
       "sources": [
-        "Reuters",
-        "The New York Times"
+        "博客园"
       ],
-      "id": "n010",
-      "published": "2026-06-02T13:51:50.382797+00:00",
-      "authority_weight": 20,
-      "link": "https://www.google.com/search?q=美国参议院通过《国家AI安全法案》，要求前沿模型强制红队测试"
+      "published": "2026-06-02T14:01:38.530779+00:00",
+      "authority_weight": 20
+    },
+    {
+      "title_cn": "NVIDIA RTX Spark驱动Windows AI突破，本地智能体时代来临",
+      "summary_cn": "NVIDIA最新RTX Spark技术为Windows平台带来AI性能飞跃，使本地运行大型语言模型与智能体成为可能。该技术利用RTX显卡的Tensor Core加速推理，无需云端即可实现实时AI交互。这一突破将推动个人电脑向AI原生设备进化，用户可离线使用AI助手、代码生成与图像处理等功能。",
+      "tags": [
+        "NVIDIA",
+        "RTX Spark",
+        "Windows AI",
+        "本地智能体"
+      ],
+      "hot_score": 68,
+      "id": "r009",
+      "title": "NVIDIA RTX Spark Powers Windows AI Breakthrough",
+      "link": "https://blockchain.news/ainews/nvidia-rtx-spark-powers-windows-ai-breakthrough",
+      "sources": [
+        "Blockchain News"
+      ],
+      "published": "2026-06-02T14:01:38.530779+00:00",
+      "authority_weight": 20
+    },
+    {
+      "title_cn": "2026年6月1日AI要闻回顾：多模态模型与AI代理成行业主旋律",
+      "summary_cn": "The Neuron发布2026年6月1日AI行业日报，总结当日重要动态：多模态模型成为各大厂商竞争焦点，AI代理（Agent）在客服、编程与设计领域加速落地。此外，多家公司宣布开源部分模型权重以吸引开发者生态。整体来看，AI行业正从单一文本生成转向多模态理解与自主行动，技术门槛持续降低。",
+      "tags": [
+        "AI日报",
+        "多模态模型",
+        "AI代理",
+        "行业动态"
+      ],
+      "hot_score": 55,
+      "id": "r010",
+      "title": "Everything That Happened in AI Today — Monday, June 1, 2026",
+      "link": "https://www.theneuron.ai/explainer-articles/everything-that-happened-in-ai-today-monday-june-1-2026/",
+      "sources": [
+        "The Neuron"
+      ],
+      "published": "2026-06-02T14:01:38.530779+00:00",
+      "authority_weight": 20
     }
   ]
 }
