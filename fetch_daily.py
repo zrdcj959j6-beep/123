@@ -194,9 +194,13 @@ def call_openai_for_daily(item):
             ],
             temperature=0.7,
             max_tokens=500,
-            response_format={"type": "json_object"},
         )
-        data = json.loads(resp.choices[0].message.content.strip())
+        raw = resp.choices[0].message.content.strip()
+        if raw.startswith("```"):
+            raw = raw.split("\n", 1)[-1]
+            if raw.endswith("```"): raw = raw[:-3]
+            raw = raw.strip()
+        data = json.loads(raw)
         return {
             "title_cn": data.get("title_cn", item["title"]),
             "summary_cn": data.get("summary_cn", "（暂无详细介绍）"),
@@ -204,7 +208,7 @@ def call_openai_for_daily(item):
             "tags": data.get("tags", []),
         }
     except Exception as e:
-        print(f"  OpenAI 调用失败: {e}", file=sys.stderr)
+        print(f"  DeepSeek 调用失败: {type(e).__name__}: {e}", file=sys.stderr)
         moods = ["funny", "amaze", "useful", "cute"]
         return {
             "title_cn": item["title"],

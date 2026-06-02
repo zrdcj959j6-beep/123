@@ -238,17 +238,22 @@ def call_openai_for_news(news_item):
             ],
             temperature=0.3,
             max_tokens=600,
-            response_format={"type": "json_object"},
         )
-        content = resp.choices[0].message.content.strip()
-        data = json.loads(content)
+        raw = resp.choices[0].message.content.strip()
+        # DeepSeek sometimes wraps JSON in ``` blocks
+        if raw.startswith("```"):
+            raw = raw.split("\n", 1)[-1]
+            if raw.endswith("```"):
+                raw = raw[:-3]
+            raw = raw.strip()
+        data = json.loads(raw)
         return {
             "title_cn": data.get("title_cn", news_item["title"]),
             "summary_cn": data.get("summary_cn", ""),
             "tags": data.get("tags", []),
         }
     except Exception as e:
-        print(f"  OpenAI 调用失败: {e}", file=sys.stderr)
+        print(f"  DeepSeek 调用失败: {type(e).__name__}: {e}", file=sys.stderr)
         return {
             "title_cn": news_item["title"],
             "summary_cn": "（摘要生成失败）",

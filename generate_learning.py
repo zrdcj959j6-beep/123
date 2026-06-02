@@ -135,15 +135,19 @@ def generate_term_with_ai():
             ],
             temperature=0.8,
             max_tokens=500,
-            response_format={"type": "json_object"},
         )
-        data = json.loads(resp.choices[0].message.content.strip())
+        raw = resp.choices[0].message.content.strip()
+        if raw.startswith("```"):
+            raw = raw.split("\n", 1)[-1]
+            if raw.endswith("```"): raw = raw[:-3]
+            raw = raw.strip()
+        data = json.loads(raw)
         return {
             "word": data.get("word", ""),
             "explanation_cn": data.get("explanation_cn", ""),
         }
     except Exception as e:
-        print(f"  OpenAI 术语生成失败: {e}", file=sys.stderr)
+        print(f"  DeepSeek 术语生成失败: {type(e).__name__}: {e}", file=sys.stderr)
         return random.choice(FALLBACK_TERMS)
 
 
@@ -174,15 +178,19 @@ def generate_paper_interpretation(paper):
             ],
             temperature=0.4,
             max_tokens=1000,
-            response_format={"type": "json_object"},
         )
-        data = json.loads(resp.choices[0].message.content.strip())
+        raw = resp.choices[0].message.content.strip()
+        if raw.startswith("```"):
+            raw = raw.split("\n", 1)[-1]
+            if raw.endswith("```"): raw = raw[:-3]
+            raw = raw.strip()
+        data = json.loads(raw)
         return {
             "title_cn": data.get("title_cn", paper["title"]),
             "interpretation_cn": data.get("interpretation_cn", ""),
         }
     except Exception as e:
-        print(f"  OpenAI 论文解读失败: {e}", file=sys.stderr)
+        print(f"  DeepSeek 论文解读失败: {type(e).__name__}: {e}", file=sys.stderr)
         return {
             "title_cn": paper["title"],
             "interpretation_cn": f"（自动解读生成失败）\n\n论文链接: {paper['link']}\n摘要: {paper.get('summary_original', '')[:300]}...",
