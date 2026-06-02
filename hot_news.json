@@ -1,0 +1,30 @@
+{
+  "updated": "2026-06-02T14:00:00+00:00",
+  "count": 2,
+  "news": [
+    {
+      "id": "a1b2c3d4e5f6",
+      "title": "OpenAI Releases GPT-5 with Advanced Reasoning Capabilities",
+      "title_cn": "OpenAI 发布 GPT-5：推理能力大幅提升",
+      "summary_cn": "OpenAI 正式发布了 GPT-5 模型，在数学推理、代码生成和多模态理解方面均达到新高。新模型引入了链式思考增强机制，在 MATH 基准测试中达到 96.8% 的成绩。CEO Sam Altman 表示这代表着通向 AGI 的重要一步。",
+      "tags": ["GPT-5", "OpenAI", "LLM", "Reasoning"],
+      "hot_score": 92,
+      "link": "https://example.com/gpt5",
+      "published": "2026-06-02T10:30:00+00:00",
+      "sources": ["TechCrunch", "HackerNews"],
+      "authority_weight": 25
+    },
+    {
+      "id": "b2c3d4e5f6a1",
+      "title": "DeepMind's New Robotics Model Masters Complex Manipulation Tasks",
+      "title_cn": "DeepMind 新机器人模型掌握复杂操作任务",
+      "summary_cn": "Google DeepMind 推出了 RT-3 机器人控制模型，能够通过自然语言指令完成如折叠衣物、整理桌面等复杂操作。模型在 1000+ 种未见过的物品上展示了强大的泛化能力，成功率达 87%。",
+      "tags": ["DeepMind", "Robotics", "AI Agent", "Google"],
+      "hot_score": 78,
+      "link": "https://example.com/deepmind-robot",
+      "published": "2026-06-02T08:00:00+00:00",
+      "sources": ["ArXiv", "HackerNews"],
+      "authority_weight": 20
+    }
+  ]
+}

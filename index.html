@@ -1,0 +1,568 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI 日报 - 每天读懂人工智能</title>
+<style>
+  :root {
+    --bg: #0d1117;
+    --bg-card: #161b22;
+    --bg-card-hover: #1c2333;
+    --border: #30363d;
+    --text: #e6edf3;
+    --text-secondary: #8b949e;
+    --text-muted: #6e7681;
+    --accent: #58a6ff;
+    --accent-glow: rgba(88, 166, 255, 0.15);
+    --tag-bg: #1a2a3a;
+    --tag-text: #79c0ff;
+    --hot-high: #ff7b72;
+    --hot-mid: #d29922;
+    --hot-low: #3fb950;
+    --tab-active: #1f6feb;
+    --divider: #21262d;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC",
+                 "Hiragino Sans GB", "Microsoft YaHei", "Helvetica Neue", sans-serif;
+    line-height: 1.6;
+    min-height: 100vh;
+  }
+
+  /* ── Header ── */
+  .header {
+    background: linear-gradient(135deg, #0d1117 0%, #161b22 50%, #0d1117 100%);
+    border-bottom: 1px solid var(--border);
+    padding: 24px 0 0;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    backdrop-filter: blur(12px);
+  }
+  .header-inner {
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 0 20px;
+  }
+  .logo {
+    font-size: 28px;
+    font-weight: 800;
+    letter-spacing: -0.5px;
+    background: linear-gradient(135deg, #58a6ff, #a371f7);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  .subtitle {
+    font-size: 13px;
+    color: var(--text-secondary);
+    margin-top: 2px;
+    margin-bottom: 16px;
+  }
+  .update-time {
+    font-size: 11px;
+    color: var(--text-muted);
+    margin-left: 8px;
+  }
+
+  /* ── Tabs ── */
+  .tabs {
+    display: flex;
+    gap: 0;
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 0 20px;
+  }
+  .tab-btn {
+    padding: 10px 24px;
+    border: none;
+    background: none;
+    color: var(--text-secondary);
+    cursor: pointer;
+    font-size: 15px;
+    font-weight: 500;
+    border-bottom: 2px solid transparent;
+    transition: all 0.2s;
+    font-family: inherit;
+  }
+  .tab-btn:hover { color: var(--text); }
+  .tab-btn.active {
+    color: var(--accent);
+    border-bottom-color: var(--tab-active);
+  }
+
+  /* ── Main ── */
+  .container {
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 24px 20px 60px;
+  }
+  .tab-content { display: none; }
+  .tab-content.active { display: block; }
+
+  /* ── Stats bar ── */
+  .stats-bar {
+    display: flex;
+    gap: 20px;
+    margin-bottom: 24px;
+    font-size: 13px;
+    color: var(--text-secondary);
+  }
+  .stats-bar span { display: flex; align-items: center; gap: 4px; }
+
+  /* ── News Cards ── */
+  .news-list { display: flex; flex-direction: column; gap: 16px; }
+
+  .news-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 20px 24px;
+    transition: all 0.25s;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+  }
+  .news-card:hover {
+    background: var(--bg-card-hover);
+    border-color: #3a4a60;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+  }
+  .news-card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 16px;
+    margin-bottom: 10px;
+  }
+  .news-title {
+    font-size: 17px;
+    font-weight: 600;
+    color: var(--text);
+    line-height: 1.4;
+    flex: 1;
+  }
+  .news-title a {
+    color: inherit;
+    text-decoration: none;
+  }
+  .news-title a:hover { color: var(--accent); }
+
+  /* Hot Score Badge */
+  .hot-badge {
+    flex-shrink: 0;
+    width: 44px;
+    height: 44px;
+    border-radius: 12px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-weight: 800;
+    font-size: 16px;
+    line-height: 1;
+  }
+  .hot-badge.hot { background: #ff7b721a; color: var(--hot-high); }
+  .hot-badge.warm { background: #d299221a; color: var(--hot-mid); }
+  .hot-badge.cool { background: #3fb9501a; color: var(--hot-low); }
+  .hot-badge-label {
+    font-size: 8px;
+    font-weight: 500;
+    opacity: 0.7;
+    margin-top: 1px;
+  }
+
+  .news-summary {
+    font-size: 14px;
+    color: var(--text-secondary);
+    line-height: 1.65;
+    margin-bottom: 12px;
+  }
+  .news-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    align-items: center;
+  }
+  .tag {
+    display: inline-block;
+    padding: 2px 10px;
+    background: var(--tag-bg);
+    color: var(--tag-text);
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 500;
+  }
+  .source {
+    font-size: 12px;
+    color: var(--text-muted);
+    display: flex;
+    align-items: center;
+    gap: 4px;
+  }
+  .source-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    display: inline-block;
+  }
+  .source-dot.tc { background: #3fb950; }
+  .source-dot.hn { background: #ff7b72; }
+  .source-dot.rd { background: #ffa657; }
+  .source-dot.ar { background: #a371f7; }
+
+  /* ── Learning Tab ── */
+  .learning-block {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 28px;
+    margin-bottom: 24px;
+  }
+  .learning-block h2 {
+    font-size: 19px;
+    margin-bottom: 6px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .learning-icon { font-size: 24px; }
+  .learning-block .meta {
+    font-size: 12px;
+    color: var(--text-muted);
+    margin-bottom: 16px;
+  }
+  .learning-block .body {
+    font-size: 15px;
+    line-height: 1.8;
+    color: var(--text);
+  }
+  .learning-block .body p { margin-bottom: 12px; }
+  .paper-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    margin-top: 16px;
+    padding: 8px 18px;
+    background: #1f6feb20;
+    color: var(--accent);
+    border-radius: 8px;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 500;
+    transition: all 0.2s;
+  }
+  .paper-link:hover { background: #1f6feb35; }
+
+  /* ── Empty / Loading ── */
+  .empty-state {
+    text-align: center;
+    padding: 60px 20px;
+    color: var(--text-muted);
+  }
+  .empty-state .icon { font-size: 48px; margin-bottom: 12px; }
+  .loading-spinner {
+    display: inline-block;
+    width: 32px;
+    height: 32px;
+    border: 3px solid var(--border);
+    border-top-color: var(--accent);
+    border-radius: 50%;
+    animation: spin 0.8s linear infinite;
+  }
+  @keyframes spin { to { transform: rotate(360deg); } }
+
+  /* ── Footer ── */
+  .footer {
+    text-align: center;
+    padding: 20px;
+    font-size: 12px;
+    color: var(--text-muted);
+    border-top: 1px solid var(--divider);
+    max-width: 960px;
+    margin: 0 auto;
+  }
+  .footer a { color: var(--accent); text-decoration: none; }
+
+  /* ── Responsive ── */
+  @media (max-width: 640px) {
+    .header { padding: 16px 0 0; }
+    .logo { font-size: 22px; }
+    .tab-btn { padding: 8px 16px; font-size: 14px; }
+    .news-card { padding: 16px; }
+    .news-title { font-size: 15px; }
+    .hot-badge { width: 36px; height: 36px; font-size: 14px; border-radius: 10px; }
+    .learning-block { padding: 20px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ── Header ── -->
+<header class="header">
+  <div class="header-inner">
+    <div class="logo">🤖 AI 日报</div>
+    <div class="subtitle">每天读懂人工智能 <span class="update-time" id="updateTime"></span></div>
+  </div>
+  <nav class="tabs">
+    <button class="tab-btn active" onclick="switchTab('news')">🔥 热点速递</button>
+    <button class="tab-btn" onclick="switchTab('learning')">📚 AI 学习</button>
+  </nav>
+</header>
+
+<!-- ── 热点速递 Tab ── -->
+<div class="container">
+  <div id="tab-news" class="tab-content active">
+    <div class="stats-bar" id="statsBar"></div>
+    <div class="news-list" id="newsList">
+      <div class="empty-state">
+        <div class="loading-spinner"></div>
+        <p style="margin-top:16px">正在加载新闻...</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── AI 学习 Tab ── -->
+  <div id="tab-learning" class="tab-content">
+    <div id="learningContent">
+      <div class="empty-state">
+        <div class="loading-spinner"></div>
+        <p style="margin-top:16px">正在加载学习内容...</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="footer">
+  AI 日报 · 内容由 AI 自动生成 · 仅供参考 ·
+  <a href="https://gitee.com" target="_blank">Gitee</a>
+</div>
+
+<script>
+// ═══════════════════════════════════════════════════════
+//  内嵌演示数据 — 即使 JSON 加载失败也能看到效果
+// ═══════════════════════════════════════════════════════
+const DEMO_NEWS = { updated: null, news: [
+  { id:"d1", title:"OpenAI Releases GPT-5", title_cn:"OpenAI 发布 GPT-5：推理能力大幅提升",
+    summary_cn:"OpenAI 正式发布了 GPT-5 模型，在数学推理、代码生成和多模态理解方面均达到新高。新模型引入了链式思考增强机制，CEO Sam Altman 表示这代表着通向 AGI 的重要一步。",
+    tags:["GPT-5","OpenAI","LLM"], hot_score:92, link:"https://example.com/gpt5",
+    published:"2026-06-02T10:30:00Z", sources:["TechCrunch","HackerNews"], authority_weight:25 },
+  { id:"d2", title:"DeepMind Robotics Breakthrough", title_cn:"DeepMind 新机器人模型掌握复杂操作",
+    summary_cn:"Google DeepMind 推出 RT-3 模型，能通过自然语言指令完成折叠衣物、整理桌面等操作，在 1000+ 种未见物品上成功率达 87%。",
+    tags:["DeepMind","Robotics","Agent"], hot_score:78, link:"https://example.com/robot",
+    published:"2026-06-02T08:00:00Z", sources:["ArXiv","HackerNews"], authority_weight:20 },
+  { id:"d3", title:"Anthropic AI Safety Paper", title_cn:"Anthropic 发布突破性 AI 安全研究",
+    summary_cn:"Anthropic 在 Nature 发表 Constitutional AI 论文，展示该方法能有效减少有害输出 94%，同时保持模型有用性。",
+    tags:["Anthropic","AI Safety","Alignment"], hot_score:65, link:"https://example.com/safety",
+    published:"2026-06-01T16:00:00Z", sources:["Reddit"], authority_weight:15 }
+]};
+
+const DEMO_HOT = { updated: null, news: DEMO_NEWS.news.filter(n => n.hot_score >= 60) };
+
+const DEMO_LEARN = { updated: null,
+  term: { word:"Mixture of Experts（MoE）",
+    explanation_cn:"MoE 将神经网络分成多个「专家」子网络，每次推理只激活一部分，大幅降低计算量。Mixtral、GPT-4 据信使用了此技术。" },
+  paper: { title:"LLMs as General-Purpose Agents: A Survey", title_cn:"LLM 作为通用智能体的全面综述",
+    interpretation_cn:"这篇综述梳理了 LLM Agent 三大核心能力：规划、工具使用和记忆。分析了当前挑战：幻觉放大、多步推理累积错误、安全风险。为开发者构建 AI Agent 提供了系统性参考。",
+    link:"https://arxiv.org/abs/2506.12345", arxiv_id:"2506.12345", authors:"Zhang et al.", published:"2026-06-01" }
+};
+
+// ── 常量 ──
+const NEWS_JSON  = 'news.json';
+const HOT_JSON   = 'hot_news.json';
+const LEARNING_JSON = 'learning.json';
+const FETCH_TIMEOUT = 6000;  // 6 秒超时
+
+// ── 带超时的 fetch ──
+function fetchWithTimeout(url, timeout) {
+  const ctrl = new AbortController();
+  const t = setTimeout(function(){ ctrl.abort(); }, timeout || FETCH_TIMEOUT);
+  return fetch(url, { signal: ctrl.signal }).finally(function(){ clearTimeout(t); });
+}
+
+// ── Tab 切换 ──
+function switchTab(tab) {
+  document.querySelectorAll('.tab-btn').forEach(function(b, i) {
+    b.classList.toggle('active', (i === 0 && tab === 'news') || (i === 1 && tab === 'learning'));
+  });
+  document.getElementById('tab-news').classList.toggle('active', tab === 'news');
+  document.getElementById('tab-learning').classList.toggle('active', tab === 'learning');
+}
+
+// ── 格式化时间 ──
+function formatTime(s) {
+  if (!s) return '';
+  try {
+    var d = new Date(s);
+    if (isNaN(d.getTime())) return '';
+    var h = Math.floor((Date.now() - d.getTime()) / 3600000);
+    if (h < 1)  return '刚刚';
+    if (h < 24) return h + ' 小时前';
+    var days = Math.floor(h / 24);
+    if (days < 30) return days + ' 天前';
+    return d.toLocaleDateString('zh-CN');
+  } catch(e) { return ''; }
+}
+
+// ── 错误/空状态 ──
+function statusHTML(icon, msg, showRetry) {
+  var btn = showRetry ? '<button class="retry-btn" onclick="loadData()">🔄 重试</button>' : '';
+  return '<div class="empty-state"><div class="icon">' + icon + '</div><p>' + msg + '</p>' + btn + '</div>';
+}
+
+// ── 热度 Badge ──
+function hotBadgeHTML(score) {
+  var cls = score >= 75 ? 'hot' : (score >= 55 ? 'warm' : 'cool');
+  return '<div class="hot-badge ' + cls + '"><span>' + score + '</span><span class="hot-badge-label">热度</span></div>';
+}
+
+function sourceDot(source) {
+  var m = { TechCrunch:'tc', HackerNews:'hn', Reddit:'rd', ArXiv:'ar' };
+  return m[source] || '';
+}
+
+// ── HTML 转义 ──
+function esc(s) {
+  if (!s) return '';
+  var d = document.createElement('div');
+  d.textContent = s;
+  return d.innerHTML;
+}
+
+// ── 渲染新闻 ──
+function renderNews(arr, updated, isDemo) {
+  var list = document.getElementById('newsList');
+  var stats = document.getElementById('statsBar');
+  var timeEl = document.getElementById('updateTime');
+
+  if (!arr || !arr.length) {
+    list.innerHTML = statusHTML('📭', '暂无新闻 — 请运行 fetch_news.py 生成数据', true);
+    stats.innerHTML = '';
+    return;
+  }
+
+  timeEl.textContent = updated ? '更新于 ' + formatTime(updated) : '';
+  timeEl.style.color = isDemo ? '#d29922' : '';  // 演示数据用橙色提示
+
+  var sources = [];
+  var tags = [];
+  arr.forEach(function(n) {
+    (n.sources || []).forEach(function(s) { if (sources.indexOf(s) < 0) sources.push(s); });
+    (n.tags || []).forEach(function(t) { if (tags.indexOf(t) < 0) tags.push(t); });
+  });
+  tags = tags.slice(0, 5);
+
+  stats.innerHTML = '<span>📰 ' + arr.length + ' 条新闻</span>' +
+    '<span>📡 ' + sources.join(', ') + '</span>' +
+    (tags.length ? '<span>🏷 ' + tags.join(', ') + '</span>' : '');
+
+  list.innerHTML = arr.map(function(n) {
+    var sourcesHTML = (n.sources || []).map(function(s) {
+      return '<span class="source"><span class="source-dot ' + sourceDot(s) + '"></span>' + esc(s) + '</span>';
+    }).join('');
+    var tagsHTML = (n.tags || []).map(function(t) {
+      return '<span class="tag">' + esc(t) + '</span>';
+    }).join('');
+    return '<article class="news-card" onclick="window.open(\'' + esc(n.link) + '\',\'_blank\')">' +
+      '<div class="news-card-header">' +
+        '<div class="news-title"><a href="' + esc(n.link) + '" target="_blank" onclick="event.stopPropagation()">' +
+          esc(n.title_cn || n.title) + '</a></div>' +
+        hotBadgeHTML(n.hot_score || 0) +
+      '</div>' +
+      '<div class="news-summary">' + esc((n.summary_cn || '').substring(0, 200)) + '</div>' +
+      '<div class="news-meta">' +
+        sourcesHTML + tagsHTML +
+        '<span style="font-size:11px;color:var(--text-muted);margin-left:auto">' + formatTime(n.published) + '</span>' +
+      '</div></article>';
+  }).join('');
+}
+
+// ── 渲染学习 ──
+function renderLearning(data, isDemo) {
+  var container = document.getElementById('learningContent');
+  var timeEl = document.getElementById('updateTime');
+
+  if (!data || typeof data !== 'object') {
+    container.innerHTML = statusHTML('📭', '暂无内容', true);
+    return;
+  }
+
+  timeEl.textContent = data.updated ? '更新于 ' + formatTime(data.updated) : '';
+  timeEl.style.color = isDemo ? '#d29922' : '';
+
+  var termHTML = (data.term && data.term.word) ?
+    '<div class="learning-block"><h2><span class="learning-icon">📖</span> 今日术语：' + esc(data.term.word) + '</h2>' +
+    '<div class="body"><p>' + esc(data.term.explanation_cn || '') + '</p></div></div>' : '';
+
+  var paperHTML = (data.paper && data.paper.title) ?
+    '<div class="learning-block"><h2><span class="learning-icon">📄</span> 论文解读：' + esc(data.paper.title_cn || data.paper.title) + '</h2>' +
+    '<div class="meta">原文：' + esc(data.paper.title) + ' · ' +
+    (data.paper.authors ? '作者: ' + esc(data.paper.authors) + ' · ' : '') +
+    (data.paper.published ? formatTime(data.paper.published) : '') + '</div>' +
+    '<div class="body"><p>' + esc(data.paper.interpretation_cn || '') + '</p></div>' +
+    (data.paper.link ? '<a class="paper-link" href="' + esc(data.paper.link) + '" target="_blank">📎 查看论文原文 →</a>' : '') +
+    '</div>' : '';
+
+  container.innerHTML = (termHTML + paperHTML) || statusHTML('📭', '暂无学习内容 — 请运行 generate_learning.py 生成数据', true);
+}
+
+// ── 加载数据：先尝试服务器 JSON，失败则用内嵌演示数据 ──
+async function loadData() {
+  var newsList = document.getElementById('newsList');
+  var learnDiv = document.getElementById('learningContent');
+
+  // 显示加载状态
+  newsList.innerHTML = '<div class="empty-state"><div class="loading-spinner"></div><p>正在加载新闻...</p></div>';
+  learnDiv.innerHTML = '<div class="empty-state"><div class="loading-spinner"></div><p>正在加载学习内容...</p></div>';
+
+  var newsOk = false;
+  var learnOk = false;
+
+  // ── 加载新闻 ──
+  try {
+    var resp = await fetchWithTimeout(HOT_JSON);
+    if (!resp.ok) resp = await fetchWithTimeout(NEWS_JSON);
+    if (resp.ok) {
+      var data = await resp.json();
+      renderNews(data.news || [], data.updated, false);
+      newsOk = true;
+    }
+  } catch(e) { console.log('fetch 新闻失败: ' + e.message); }
+
+  if (!newsOk) {
+    // 回退到内嵌演示数据
+    renderNews(DEMO_HOT.news, null, true);
+  }
+
+  // ── 加载学习 ──
+  try {
+    var lr = await fetchWithTimeout(LEARNING_JSON);
+    if (lr.ok) {
+      var ld = await lr.json();
+      renderLearning(ld, false);
+      learnOk = true;
+    }
+  } catch(e) { console.log('fetch 学习失败: ' + e.message); }
+
+  if (!learnOk) {
+    renderLearning(DEMO_LEARN, true);
+  }
+}
+
+// ── 注入重试按钮样式 ──
+var s = document.createElement('style');
+s.textContent = '.retry-btn{display:inline-block;margin-top:12px;padding:8px 20px;background:#1f6feb;color:#fff;border:none;border-radius:8px;cursor:pointer;font-size:14px;font-family:inherit;}.retry-btn:hover{background:#388bfd;}';
+document.head.appendChild(s);
+
+// ── 启动 ──
+loadData();
+</script>
+</body>
+</html>

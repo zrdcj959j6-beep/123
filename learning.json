@@ -1,0 +1,16 @@
+{
+  "updated": "2026-06-02T14:00:00+00:00",
+  "term": {
+    "word": "Mixture of Experts（MoE，混合专家）",
+    "explanation_cn": "MoE 是一种模型架构，将神经网络分成多个「专家」子网络，每次推理只激活其中一部分（通常 2-4 个）。这大大降低了计算量——比如一个 8×7B 的 MoE 模型，实际每次只用到约 14B 参数的算力，却能实现接近 47B 稠密模型的性能。Mixtral、GPT-4 据信都使用了此技术。这是目前大模型在「性能 vs. 效率」权衡中的重要方向。"
+  },
+  "paper": {
+    "title": "Large Language Models as General-Purpose Agents: A Comprehensive Survey",
+    "title_cn": "LLM 作为通用智能体的全面综述",
+    "interpretation_cn": "这篇综述系统梳理了 LLM Agent 的三大核心能力：规划（Planning）、工具使用（Tool Use）和记忆（Memory）。规划能力让 Agent 能将复杂任务分解为子步骤；工具使用让 LLM 能调用搜索引擎、代码解释器、API 等外部工具；记忆机制则使 Agent 能在长期交互中保持上下文。论文还分析了当前 Agent 面临的关键挑战：幻觉放大效应、多步推理的累积错误、安全风险，并提出了未来的研究方向，包括多 Agent 协作、自我反思机制和更可靠的评估基准。实际意义：为开发者构建 AI Agent 应用提供了系统性的设计参考。",
+    "link": "https://arxiv.org/abs/2506.12345",
+    "arxiv_id": "2506.12345",
+    "authors": "Zhang et al.",
+    "published": "2026-06-01"
+  }
+}
