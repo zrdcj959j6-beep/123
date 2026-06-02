@@ -911,11 +911,33 @@ function showToast(msg) {
 //  带超时 fetch
 // ═══════════════════════════════════════════════
 function fetchWithTimeout(url, timeout) {
+  // Try localStorage cache first (10min TTL)
+  var cacheKey = 'cache_' + url;
+  try {
+    var cached = localStorage.getItem(cacheKey);
+    if (cached) {
+      var entry = JSON.parse(cached);
+      if (Date.now() - entry.time < 600000) { // 10 min cache
+        return Promise.resolve(new Response(entry.data));
+      }
+    }
+  } catch(e) {}
+
   var ctrl = new AbortController();
   var timer = setTimeout(function(){ ctrl.abort(); }, timeout || FETCH_TIMEOUT);
   var sep = url.indexOf('?') >= 0 ? '&' : '?';
   var busted = url + sep + 'v=' + Date.now();
-  return fetch(busted, { signal: ctrl.signal }).finally(function(){ clearTimeout(timer); });
+  return fetch(busted, { signal: ctrl.signal })
+    .then(function(resp) {
+      // Cache successful responses
+      if (resp.ok) {
+        resp.clone().text().then(function(txt) {
+          try { localStorage.setItem(cacheKey, JSON.stringify({time: Date.now(), data: txt})); } catch(e) {}
+        });
+      }
+      return resp;
+    })
+    .finally(function(){ clearTimeout(timer); });
 }
 
 
