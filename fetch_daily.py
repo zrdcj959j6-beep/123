@@ -133,12 +133,11 @@ client = OpenAI(api_key=os.environ.get("OPENAI_API_KEY"), base_url="https://api.
 # ── 工具函数 ──────────────────────────────────────────
 
 def _fetch_rss(url, timeout=FEED_TIMEOUT):
-    req = urllib.request.Request(url, headers={"User-Agent": FEED_UA})
     try:
-        ctx = ssl.create_default_context()
-        with urllib.request.urlopen(req, timeout=timeout, context=ctx) as resp:
-            raw = resp.read()
-        return feedparser.parse(raw)
+        import requests as req
+        resp = req.get(url, headers={"User-Agent": FEED_UA}, timeout=timeout)
+        resp.raise_for_status()
+        return feedparser.parse(resp.content)
     except Exception as e:
         result = feedparser.parse("")
         result.bozo = True
