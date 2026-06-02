@@ -6,21 +6,21 @@
 
 - **热点速递**：多源 AI 新闻聚合，中文摘要，热度排序
 - **AI 学习**：每日 AI 术语解释 + 最新 ArXiv 论文中文解读
-- **自动更新**：GitHub Actions 每天 UTC 6:00 自动运行
+- **自动更新**：Windows 定时任务每天自动运行 Python 脚本，推送到 Gitee
 - **暗色模式**：现代风格单页，响应式布局
 
 ## 📁 文件结构
 
 ```
-├── fetch_news.py          # 新闻抓取 + AI 处理脚本
-├── generate_learning.py   # AI 学习内容生成脚本
-├── index.html             # 前端单页（暗色模式）
-├── news.json              # 全量新闻（自动生成）
-├── hot_news.json          # 热点新闻，热度>=60（自动生成）
-├── learning.json          # AI 学习内容（自动生成）
+├── fetch_daily.py          # 吃瓜日常内容抓取
+├── index.html             # 前端单页（暗色模式，3 Tab）
+├── news.json              # 全量新闻（12条+）
+├── hot_news.json          # 热点新闻，热度>=30
+├── daily.json             # 吃瓜日常内容
+├── learning.json          # AI 学习内容
 ├── requirements.txt       # Python 依赖
-└── .github/workflows/
-    └── update.yml         # GitHub Actions 定时任务
+├── update_and_deploy.bat  # Windows 自动更新+部署脚本
+└── 浏览器/                # Chrome 安装包（已忽略）
 ```
 
 ## 🚀 配置步骤

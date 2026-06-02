@@ -802,6 +802,7 @@
       <button class="mood-chip" onclick="filterDaily('useful')">💡 实用</button>
       <button class="mood-chip" onclick="filterDaily('hype')">🔥 热门</button>
       <button class="mood-chip" onclick="filterDaily('nostalgia')">🥹 怀旧</button>
+      <button class="mood-chip" onclick="filterDaily('cute')">🥰 可爱</button>
     </div>
     <div class="daily-grid" id="dailyGrid">
       <div class="empty-state">
@@ -990,18 +991,19 @@ function applySearchFilter() {
     } else {
       document.getElementById('dailyGrid').innerHTML = '<div class="search-no-results"><p style="font-size:24px">🔍</p><p>没有找到包含 "<strong>' + esc(searchQuery) + '</strong>" 的内容</p><p style="font-size:12px;color:var(--text-muted)">试试其他关键词？</p></div>';
     }
+  } else {
+    // Learning tab - search in DOM
+    var learnEl = document.getElementById('learningContent');
+    if (learnEl) {
+      var txt = learnEl.textContent.toLowerCase();
+      if (txt.indexOf(searchQuery) >= 0) {
+        learnEl.style.display = '';
+      } else {
+        learnEl.style.display = 'none';
+      }
+    }
   }
 }
-
-// Override switchTab to also reset search
-var _originalSwitchTab = switchTab;
-switchTab = function(tab) {
-  _originalSwitchTab(tab);
-  currentActiveTab = tab;
-  if (searchQuery) {
-    applySearchFilter();
-  }
-};
 
 // ═══════════════════════════════════════════════
 //  Tab 切换
@@ -1094,7 +1096,7 @@ function renderTicker(newsArr) {
 // ═══════════════════════════════════════════════
 function renderHero(topNews) {
   var area = document.getElementById('heroArea');
-  if (!topNews || topNews.length < 2) { area.innerHTML = ''; return; }
+  if (!topNews || !topNews.length) { area.innerHTML = ''; return; }
   area.innerHTML = '<div class="hero-grid">' + topNews.map(function(n, i) {
     var cls = hotBadgeClass(n.hot_score);
     return '<article class="hero-card" style="animation:fadeInUp 0.4s ' + (i*0.1) + 's ease backwards" ' +
@@ -1228,10 +1230,8 @@ function filterDaily(mood) {
   dailyFilter = mood;
   document.querySelectorAll('#moodFilter .mood-chip').forEach(function(c) {
     var txt = c.textContent.trim();
-    var match = (mood === 'all' && txt.indexOf('全部') === 0);
-    if (!match && mood !== 'all') {
-      match = txt.indexOf(MOOD_EMOJI[mood]) === 0;
-    }
+    var emoji = MOOD_EMOJI[mood] || '';
+    var match = mood === 'all' ? (txt.indexOf('全部') === 0) : (txt.indexOf(emoji) === 0);
     c.classList.toggle('active', match);
   });
   renderDailyCards(allDailyItems);
@@ -1363,8 +1363,7 @@ async function loadData(silent) {
 //  统一渲染
 // ═══════════════════════════════════════════════
 function renderAll(newsArr, updated, isDemo) {
-  var timeEl = document.getElementById('updateTime');
-  // updateTime span 不存在了，用 refreshInfo
+  // updateTime span removed - using refreshInfo instead，用 refreshInfo
   var info = document.getElementById('refreshInfo');
   if (updated) {
     info.setAttribute('data-updated', updated);

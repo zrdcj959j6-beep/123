@@ -13,6 +13,7 @@ import random
 import sys
 import urllib.request
 import ssl
+import time
 from datetime import datetime, timezone
 from openai import OpenAI
 
@@ -213,16 +214,6 @@ def call_openai_for_daily(item):
         }
 
 
-def random_color():
-    """为不同分类生成柔和的配色"""
-    colors = {
-        "美食": "#ff6b6b", "游戏": "#a371f7", "科技生活": "#58a6ff",
-        "冷知识": "#3fb950", "奇闻": "#d29922", "趣图": "#ff7b72",
-        "生活": "#79c0ff",
-    }
-    return colors.get
-
-
 # ── 主逻辑 ────────────────────────────────────────────
 
 def main():
@@ -236,7 +227,6 @@ def main():
     for feed_config in RSS_FEEDS:
         entries = fetch_feed(feed_config)
         all_entries.extend(entries)
-        import time
         time.sleep(0.3)
 
     print(f"\n📊 共抓取 {len(all_entries)} 条原始条目")
