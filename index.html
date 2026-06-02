@@ -832,6 +832,8 @@
 <div class="toast" id="toast"></div>
 
 <script>
+// 拦截空链接: 点击无link的卡片不会打开空白页
+var _open=window.open;window.open=function(u,t){if(u&&u.trim()&&u!=="#")return _open.call(window,u,t);};
 // ═══════════════════════════════════════════════════════════
 //  丰富的演示数据 — JSON 加载失败时展示
 // ═══════════════════════════════════════════════════════════
