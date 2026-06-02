@@ -884,7 +884,7 @@ const DEMO_LEARN = { updated: "2026-06-02T14:00:00Z",
 const NEWS_JSON  = 'news.json';
 const HOT_JSON   = 'hot_news.json';
 const LEARNING_JSON = 'learning.json';
-const FETCH_TIMEOUT = 6000;
+const FETCH_TIMEOUT = 12000;
 const AUTO_REFRESH_SEC = 300; // 5 分钟自动刷新
 
 // ═══════════════════════════════════════════════
@@ -911,10 +911,9 @@ function showToast(msg) {
 function fetchWithTimeout(url, timeout) {
   var ctrl = new AbortController();
   var timer = setTimeout(function(){ ctrl.abort(); }, timeout || FETCH_TIMEOUT);
-  // Cache-busting: add timestamp to avoid stale cache
   var sep = url.indexOf('?') >= 0 ? '&' : '?';
-  var busted = url + sep + '_t=' + Date.now();
-  return fetch(busted, { signal: ctrl.signal, cache: 'no-store' }).finally(function(){ clearTimeout(timer); });
+  var busted = url + sep + 'v=' + Date.now();
+  return fetch(busted, { signal: ctrl.signal }).finally(function(){ clearTimeout(timer); });
 }
 
 
