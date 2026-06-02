@@ -21,7 +21,7 @@ if "%OPENAI_API_KEY%"=="" (
     echo.
 )
 
-echo [1/4] 抓取新闻 + AI 处理...
+echo [1/5] 抓取新闻 + AI 处理...
 python fetch_news.py
 if %errorlevel% neq 0 (
     echo [错误] fetch_news.py 执行失败
@@ -30,7 +30,7 @@ if %errorlevel% neq 0 (
 )
 
 echo.
-echo [2/4] 生成学习内容...
+echo [2/5] 生成学习内容...
 python generate_learning.py
 if %errorlevel% neq 0 (
     echo [错误] generate_learning.py 执行失败
@@ -39,18 +39,25 @@ if %errorlevel% neq 0 (
 )
 
 echo.
-echo [3/4] 提交到 Git...
-git add news.json hot_news.json learning.json
+echo [3/5] 抓取吃瓜日常...
+python fetch_daily.py
+if %errorlevel% neq 0 (
+    echo [警告] fetch_daily.py 执行失败，但继续
+)
+
+echo.
+echo [4/5] 提交到 Git...
+git add news.json hot_news.json learning.json daily.json
 git commit -m "🤖 自动更新 — %date% %time%" 2>&1
 if %errorlevel% neq 0 (
     echo [提示] 没有新的更改需要提交
     echo.
-    echo [4/4] 跳过推送
+    echo [5/5] 跳过推送
     goto :done
 )
 
 echo.
-echo [4/4] 推送到 Gitee...
+echo [5/5] 推送到 Gitee...
 git push
 if %errorlevel% neq 0 (
     echo [错误] 推送失败，请检查网络或 Git 配置

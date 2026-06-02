@@ -455,6 +455,144 @@
   }
   .paper-link:hover { background: #1f6feb35; }
 
+  /* ══════ Daily Tab (吃瓜日常) ══════ */
+  .daily-hero {
+    background: linear-gradient(135deg, #1a1028 0%, #0f1a2e 50%, #1a1028 100%);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 24px 28px;
+    margin-bottom: 20px;
+    text-align: center;
+  }
+  .daily-hero h2 {
+    font-size: 22px;
+    font-weight: 800;
+    background: linear-gradient(135deg, #ff6b6b, #ffd93d, #6bcb77, #4d96ff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 6px;
+  }
+  .daily-hero .dh-subtitle {
+    font-size: 13px;
+    color: var(--text-secondary);
+  }
+  .mood-filter {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 20px;
+    justify-content: center;
+  }
+  .mood-chip {
+    padding: 6px 14px;
+    border-radius: 20px;
+    border: 1px solid var(--border);
+    background: var(--bg-card);
+    color: var(--text-secondary);
+    cursor: pointer;
+    font-size: 12px;
+    font-family: inherit;
+    transition: all 0.2s;
+    white-space: nowrap;
+  }
+  .mood-chip:hover { border-color: #5a5a7a; color: var(--text); }
+  .mood-chip.active {
+    background: #1f6feb20;
+    border-color: var(--accent);
+    color: var(--accent);
+    font-weight: 600;
+  }
+
+  /* masonry-like grid */
+  .daily-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-auto-rows: auto;
+    gap: 14px;
+  }
+  .daily-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 16px;
+    transition: all 0.25s;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    animation: fadeInUp 0.4s ease backwards;
+  }
+  .daily-card:nth-child(5n+1) { grid-row: span 1; }
+  .daily-card:nth-child(5n+3) { grid-row: span 1; }
+  .daily-card:hover {
+    background: var(--bg-card-hover);
+    border-color: #3a4a60;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+  }
+  .daily-card .dc-cat {
+    font-size: 10px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 8px;
+  }
+  .dc-cat.美食 { color: #ff6b6b; }
+  .dc-cat.游戏 { color: #a371f7; }
+  .dc-cat.科技生活 { color: #58a6ff; }
+  .dc-cat.冷知识 { color: #3fb950; }
+  .dc-cat.奇闻 { color: #d29922; }
+  .dc-cat.趣图 { color: #ff7b72; }
+  .dc-cat.生活 { color: #79c0ff; }
+  .daily-card .dc-title {
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 1.5;
+    color: var(--text);
+    margin-bottom: 8px;
+    flex: 1;
+  }
+  .daily-card:hover .dc-title { color: var(--accent); }
+  .daily-card .dc-mood {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 20px;
+    opacity: 0.6;
+    transition: opacity 0.2s;
+  }
+  .daily-card:hover .dc-mood { opacity: 1; }
+  .daily-card .dc-summary {
+    font-size: 12px;
+    color: var(--text-secondary);
+    line-height: 1.6;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+  .daily-card .dc-meta {
+    margin-top: 10px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    align-items: center;
+    font-size: 11px;
+    color: var(--text-muted);
+  }
+  .daily-spinner {
+    display: inline-block;
+    width: 28px;
+    height: 28px;
+    border: 3px solid var(--border);
+    border-top-color: #ff6b6b;
+    border-radius: 50%;
+    animation: spin 0.8s linear infinite;
+    margin-bottom: 8px;
+  }
+
   /* ══════ Loading ══════ */
   .empty-state {
     text-align: center;
@@ -567,6 +705,7 @@
   </div>
   <nav class="tabs">
     <button class="tab-btn active" onclick="switchTab('news')">🔥 热点速递</button>
+    <button class="tab-btn" onclick="switchTab('daily')">🍉 吃瓜日常</button>
     <button class="tab-btn" onclick="switchTab('learning')">📚 AI 学习</button>
   </nav>
 </header>
@@ -578,6 +717,27 @@
     <div class="stats-bar" id="statsBar"></div>
     <div id="heroArea"></div>
     <div id="newsGridArea"></div>
+  </div>
+  <!-- ══ 吃瓜日常 ══ -->
+  <div id="tab-daily" class="tab-content">
+    <div class="daily-hero" id="dailyHero">
+      <h2>🍉 吃瓜日常</h2>
+      <p class="dh-subtitle" id="dailySubtitle">轻松一刻 · 什么都看看 · 快乐不需要理由</p>
+    </div>
+    <div class="mood-filter" id="moodFilter">
+      <button class="mood-chip active" onclick="filterDaily('all')">🌈 全部</button>
+      <button class="mood-chip" onclick="filterDaily('funny')">😂 搞笑</button>
+      <button class="mood-chip" onclick="filterDaily('amaze')">🤯 震撼</button>
+      <button class="mood-chip" onclick="filterDaily('useful')">💡 实用</button>
+      <button class="mood-chip" onclick="filterDaily('hype')">🔥 热门</button>
+      <button class="mood-chip" onclick="filterDaily('nostalgia')">🥹 怀旧</button>
+    </div>
+    <div class="daily-grid" id="dailyGrid">
+      <div class="empty-state">
+        <div class="daily-spinner"></div>
+        <p>正在加载吃瓜内容...</p>
+      </div>
+    </div>
   </div>
   <!-- ══ AI 学习 ══ -->
   <div id="tab-learning" class="tab-content">
@@ -687,9 +847,11 @@ function fetchWithTimeout(url, timeout) {
 // ═══════════════════════════════════════════════
 function switchTab(tab) {
   document.querySelectorAll('.tab-btn').forEach(function(b, i) {
-    b.classList.toggle('active', (i === 0 && tab === 'news') || (i === 1 && tab === 'learning'));
+    var tabs = ['news', 'daily', 'learning'];
+    b.classList.toggle('active', tabs[i] === tab);
   });
   document.getElementById('tab-news').classList.toggle('active', tab === 'news');
+  document.getElementById('tab-daily').classList.toggle('active', tab === 'daily');
   document.getElementById('tab-learning').classList.toggle('active', tab === 'learning');
 }
 
@@ -889,6 +1051,98 @@ function refreshNow() {
   showToast('🔄 正在刷新数据...');
 }
 
+
+// ═══════════════════════════════════════════════
+//  Mood emoji
+// ═══════════════════════════════════════════════
+const MOOD_EMOJI = { funny: '😂', amaze: '🤯', useful: '💡', hype: '🔥', nostalgia: '🥹', cute: '🥰' };
+
+let allDailyItems = [];
+let dailyFilter = 'all';
+
+// ═══════════════════════════════════════════════
+//  过滤日常
+// ═══════════════════════════════════════════════
+function filterDaily(mood) {
+  dailyFilter = mood;
+  document.querySelectorAll('#moodFilter .mood-chip').forEach(function(c) {
+    var txt = c.textContent.trim();
+    var match = (mood === 'all' && txt.indexOf('全部') === 0);
+    if (!match && mood !== 'all') {
+      match = txt.indexOf(MOOD_EMOJI[mood]) === 0;
+    }
+    c.classList.toggle('active', match);
+  });
+  renderDailyCards(allDailyItems);
+}
+
+// ═══════════════════════════════════════════════
+//  渲染日常卡片
+// ═══════════════════════════════════════════════
+function renderDailyCards(items) {
+  var grid = document.getElementById('dailyGrid');
+  if (!items || !items.length) {
+    grid.innerHTML = '<div class="empty-state"><div class="icon">🍉</div><p>暂无吃瓜内容</p></div>';
+    return;
+  }
+  var filtered = dailyFilter === 'all' ? items : items.filter(function(it) { return it.mood === dailyFilter; });
+  if (!filtered.length) {
+    grid.innerHTML = '<div class="empty-state"><div class="icon">🔍</div><p>这个心情分类下没有内容，换个试试？</p></div>';
+    return;
+  }
+  grid.innerHTML = filtered.map(function(n, i) {
+    var moodEmoji = MOOD_EMOJI[n.mood] || '🍉';
+    var tagsHTML = (n.tags || []).slice(0, 3).map(function(t) { return '<span class="tag">' + esc(t) + '</span>'; }).join('');
+    return '<article class="daily-card" style="animation-delay:' + (i*0.04) + 's" onclick="window.open(\'' + esc(n.link) + '\',\'_blank\')">' +
+      '<span class="dc-mood">' + moodEmoji + '</span>' +
+      '<span class="dc-cat ' + esc(n.category) + '">' + esc(n.category) + '</span>' +
+      '<div class="dc-title">' + esc(n.title_cn) + '</div>' +
+      '<div class="dc-summary">' + esc(n.summary_cn || '') + '</div>' +
+      '<div class="dc-meta">' + tagsHTML +
+        '<span style="margin-left:auto">' + formatTime(n.published) + '</span>' +
+      '</div></article>';
+  }).join('');
+
+  var subtitle = document.getElementById('dailySubtitle');
+  if (subtitle) {
+    var cats = [];
+    items.forEach(function(it) { if (cats.indexOf(it.category) < 0) cats.push(it.category); });
+    subtitle.textContent = (dailyFilter === 'all' ? '' : MOOD_EMOJI[dailyFilter] + ' ') +
+      filtered.length + ' 条内容 · ' + cats.slice(0, 6).join(' · ');
+  }
+}
+
+// ═══════════════════════════════════════════════
+//  加载日常数据
+// ═══════════════════════════════════════════════
+async function loadDailyData() {
+  try {
+    var resp = await fetchWithTimeout('daily.json');
+    if (resp.ok) {
+      var data = await resp.json();
+      allDailyItems = data.items || [];
+      renderDailyCards(allDailyItems);
+      return;
+    }
+  } catch(e) { console.log('fetch daily failed: ' + e.message); }
+  // Fallback inline data
+  allDailyItems = [
+    { id:"df1", title_cn:"猫咖学会开智能门锁，主人装了三层防护才拦住", summary_cn:"橘猫通过观察主人操作学会了用爪子触碰智能门锁的指纹区。虽然指纹不匹配无法开门，但成功触发了警报系统。主人加装物理锁后才终于拦住这只高智商猫咖。", category:"趣图", mood:"funny", tags:["猫咖","智能家居","搞笑"], link:"#", published:"2026-06-02T12:00:00Z" },
+    { id:"df2", title_cn:"睡眠专家揭示最佳午睡时长：26分钟刚刚好", summary_cn:"NASA研究发现26分钟是「咖啡因午觉」的黄金时长——喝完咖啡立刻睡26分钟，醒来时咖啡因刚好起效。飞行员实验显示这种方式能让下午警觉度提升54%。", category:"冷知识", mood:"useful", tags:["睡眠","NASA","生活技巧"], link:"#", published:"2026-06-02T10:00:00Z" },
+    { id:"df3", title_cn:"日本程序员用ChatGPT写恋爱小说，意外登上畅销榜", summary_cn:"不会谈恋爱的日本程序员用ChatGPT辅助写了恋爱小说《代码与心跳》，因其「理工男式浪漫」意外走红，连续三周位列亚马逊日本恋爱小说榜TOP10。读者评论：「这才是真正的科幻小说。」", category:"科技生活", mood:"funny", tags:["ChatGPT","小说","日本"], link:"#", published:"2026-06-02T09:00:00Z" },
+    { id:"df4", title_cn:"任天堂官宣Switch 2首发游戏阵容，钱包缩缩发抖", summary_cn:"任天堂公开Switch 2首发护航游戏阵容，包括《塞尔达传说》新作、4K《马里奥赛车》等12款第一方作品。#RIPWallet冲上热搜。玩家：「刚攒够钱买主机，现在告诉我还要准备游戏钱？」", category:"游戏", mood:"hype", tags:["任天堂","Switch2","塞尔达"], link:"#", published:"2026-06-02T08:00:00Z" },
+    { id:"df5", title_cn:"米其林大厨用便利店食材做高级料理，800万人围观", summary_cn:"米其林三星主厨发起「便利店挑战」，用饭团、关东煮和薯片做出了分子料理风格的日式怀石便当。评论：「看完觉得自己每天的便利店午餐都是在浪费生命。」", category:"美食", mood:"amaze", tags:["米其林","便利店","料理"], link:"#", published:"2026-06-02T07:30:00Z" },
+    { id:"df6", title_cn:"瑞典公司推出「摸鱼模式」办公椅，3小时内售罄", summary_cn:"智能办公椅检测到「摸鱼姿态」超过5分钟自动躺平并弹出小桌板。宣传语：「既然要摸鱼，不如躺平摸」。首批5000把3小时内售罄。", category:"科技生活", mood:"funny", tags:["摸鱼","办公","瑞典"], link:"#", published:"2026-06-02T06:00:00Z" },
+    { id:"df7", title_cn:"科学家证实：看可爱动物视频降压力40%", summary_cn:"利兹大学研究：午休看10分钟可爱动物视频，皮质醇降40%，效率提升18%。观看熊猫打喷嚏效果最佳。网友：「终于有科学依据光明正大摸鱼了！」", category:"冷知识", mood:"useful", tags:["动物","压力","科学"], link:"#", published:"2026-06-01T22:00:00Z" },
+    { id:"df8", title_cn:"庞贝古城发现2000年前的「披萨」壁画", summary_cn:"考古学家在庞贝古城发现保存完好的壁画，描绘了类似现代披萨的食物。虽缺少番茄和马苏里拉（当时未传入欧洲），但被认为是披萨最早的视觉记录。", category:"美食", mood:"amaze", tags:["考古","披萨","意大利"], link:"#", published:"2026-06-01T18:00:00Z" },
+    { id:"df9", title_cn:"东京透明厠所走红：有人靠近就自动变不透明", summary_cn:"涩谷公园透明公共厠所——平时完全透明可以看到内部是否干净，锁门后玻璃自动雾化。如果30分钟未开门玻璃重新变透明以防意外。社恐患者：「雾化速度能不能再快点？」", category:"奇闻", mood:"funny", tags:["日本","设计","厠所"], link:"#", published:"2026-06-01T10:00:00Z" },
+    { id:"df10", title_cn:"2026世界杯吉祥物「太空熊猫」萌翻全球", summary_cn:"美加墨世界杯吉祥物揭晓——穿宇航服的熊猫「AstroPanda」。理念融合中国元素和太空探索。中国网友：「我们派出熊猫做文化输出，有什么问题吗？」", category:"奇闻", mood:"hype", tags:["世界杯","熊猫","2026"], link:"#", published:"2026-06-01T08:00:00Z" },
+    { id:"df11", title_cn:"洗澡时最容易产生创意灵感，哈佛研究证实", summary_cn:"哈佛研究：洗澡时灵感洞察概率是工作时的2.7倍。淋浴提供适度感官干扰让默认模式网络活跃。网友：「难怪我每次洗澡都有绝妙回愼，洗完就忘了。」", category:"冷知识", mood:"useful", tags:["创造力","脑科学","哈佛"], link:"#", published:"2026-06-01T15:00:00Z" },
+    { id:"df12", title_cn:"巨型橡皮鸭时隔十年重返维港，网友集体怀旧", summary_cn:"荷兰艺术家霍夫曼的巨型橡皮鸭十年后重返香港维港，这次是双鸭组合。网友：「十年了，我从大学生变成打工人，鸭子还是那么大。」", category:"奇闻", mood:"nostalgia", tags:["橡皮鸭","香港","怀旧"], link:"#", published:"2026-06-01T12:00:00Z" }
+  ];
+  renderDailyCards(allDailyItems);
+}
+
 // ═══════════════════════════════════════════════
 //  加载数据
 // ═══════════════════════════════════════════════
@@ -938,6 +1192,7 @@ async function loadData(silent) {
   }
 
   startRefreshTimer();
+  loadDailyData();
   if (!silent) {
     showToast(newsOk ? '✅ 数据已更新' : '⚠️ 使用演示数据');
   }
